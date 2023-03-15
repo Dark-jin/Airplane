@@ -12,14 +12,14 @@ const liveairplane = () => {
   axios
     .get("/FlightStatusList/getFlightStatusList", {
       params: {
-        serviceKey: VITE_APP_AIR_KEY,
         schLineType: "D",
         schIOType: "O",
+        serviceKey: VITE_APP_AIR_KEY + "==",
       },
       headers: headerConfig,
     })
     .then((response) => {
-      console.log(response);
+      console.log(response.data.response.body.items.item);
     })
     .catch((error) => {
       console.log(error);
