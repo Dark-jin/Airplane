@@ -1,5 +1,7 @@
 import axios from "axios";
 import React from "react";
+import { SetterOrUpdater } from "recoil";
+import { liveListTpye } from "../type";
 
 const { VITE_APP_AIR_KEY } = import.meta.env;
 
@@ -8,7 +10,7 @@ const headerConfig = {
   "Access-Control-Allow-Origin": "*",
 };
 
-const liveairplane = () => {
+const liveairplane = (setliveState: SetterOrUpdater<liveListTpye>) => {
   axios
     .get("/FlightStatusList/getFlightStatusList", {
       params: {
@@ -19,7 +21,7 @@ const liveairplane = () => {
       headers: headerConfig,
     })
     .then((response) => {
-      console.log(response.data.response.body.items.item);
+      setliveState(response.data.response.body.items.item);
     })
     .catch((error) => {
       console.log(error);
