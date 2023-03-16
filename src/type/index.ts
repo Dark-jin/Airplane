@@ -3,8 +3,8 @@ type liveListTpye = {
   airlineEnglish: string;
   airlineKorean: string;
   airport: string;
-  arriveEng: string;
-  arriveKor: string;
+  arrivedEng: string;
+  arrivedKor: string;
   boardingEng: string;
   boardingKor: string;
   city: string;

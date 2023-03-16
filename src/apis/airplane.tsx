@@ -17,11 +17,13 @@ const liveairplane = (setliveState: SetterOrUpdater<liveListTpye>) => {
         schLineType: "D",
         schIOType: "O",
         serviceKey: VITE_APP_AIR_KEY + "==",
+        pageNo: 1,
       },
       headers: headerConfig,
     })
     .then((response) => {
       setliveState(response.data.response.body.items.item);
+      console.log(response.data.response.body.items.item);
     })
     .catch((error) => {
       console.log(error);
