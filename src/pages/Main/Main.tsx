@@ -9,24 +9,37 @@ const Main = () => {
   useEffect(() => {
     liveairplane(setliveState);
   }, []);
-  console.log(livestate);
   return (
     <>
       <h1>AIR AIR AIR</h1>
       <h2>PLANE</h2>
       {livestate.map((item, index) => (
-        <div className="card card-side bg-base-100 shadow-xl" key={index}>
+        <div
+          className="card card-side bg-base-100 shadow-xl mt-4 rounded-xl bg-sky-300"
+          key={index}
+        >
           <div className="card-body">
-            <h3>비행기명</h3>
-            <h2>
+            <div className="text-2xl font-bold">
               {item.airlineEnglish} ({item.airFln})
-            </h2>
-            <h2 className="card-title">
-              {item.boardingEng}==={item.arrivedEng}
-            </h2>
-            <p>공항 {item.city}</p>
-            <div className="card-actions justify-between">
-              시간 : {item.std} {item.line} 게이트 : {item.gate}
+            </div>
+            <div className="grid grid-cols-3 mt-6">
+              <div className="text-2xl font-bold">{item.boardingEng}</div>
+              <div className="text-2xl">======={">"}</div>
+              <div className="text-2xl font-bold">{item.arrivedEng}</div>
+            </div>
+            <div className="text-xl font-bold mt-6">{item.city}</div>
+            <div className="grid grid-cols-3 mt-6">
+              <div className="text-lg font-semibold">
+                Time : {item.std.substring(0, 2)}h {item.std.substring(2, 4)}m
+              </div>
+              <div className="text-lg font-semibold">
+                {item.line == "국내"
+                  ? "Domestic Flight"
+                  : item.line == "국제"
+                  ? "International Flight"
+                  : "No Data"}
+              </div>
+              <div className="text-lg font-semibold">GATE : {item.gate}</div>
             </div>
           </div>
         </div>
