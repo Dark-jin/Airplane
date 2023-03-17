@@ -26,4 +26,8 @@ const liveState = atom<liveListTpye>({
     },
   ],
 });
-export { liveState };
+const totalliveState = atom<number>({
+  key: "totalData",
+  default: 1,
+});
+export { liveState, totalliveState };

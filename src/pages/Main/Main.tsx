@@ -1,14 +1,17 @@
 import React, { useEffect } from "react";
-import { liveairplane } from "../../apis/airplane";
+import { liveairplane, totallive } from "../../apis/airplane";
 import { useRecoilState } from "recoil";
-import { liveState } from "../../states/atom";
+import { liveState, totalliveState } from "../../states/atom";
 
 const Main = () => {
   const [livestate, setliveState] = useRecoilState(liveState);
+  const [total, setTotal] = useRecoilState(totalliveState);
 
   useEffect(() => {
-    liveairplane(setliveState);
+    totallive(setTotal);
+    liveairplane(setliveState, Math.ceil(total / 10));
   }, []);
+  console.log(Math.ceil(total / 10));
   return (
     <>
       <h1>AIR AIR AIR</h1>

@@ -9,24 +9,47 @@ const headerConfig = {
   "Content-Type": "application/json",
   "Access-Control-Allow-Origin": "*",
 };
-
-const liveairplane = (setliveState: SetterOrUpdater<liveListTpye>) => {
+const totallive = (setTotal: SetterOrUpdater<number>) => {
   axios
     .get("/FlightStatusList/getFlightStatusList", {
       params: {
+        serviceKey: VITE_APP_AIR_KEY + "==",
+        //schStTime: "0900",
         schLineType: "D",
         schIOType: "O",
-        serviceKey: VITE_APP_AIR_KEY + "==",
         pageNo: 1,
       },
       headers: headerConfig,
     })
     .then((response) => {
-      setliveState(response.data.response.body.items.item);
-      console.log(response.data.response.body.items.item);
+      setTotal(response.data.response.body.totalCount);
+      console.log(response.data.response.body.totalCount);
     })
     .catch((error) => {
       console.log(error);
     });
 };
-export { liveairplane };
+
+const liveairplane = (
+  setliveState: SetterOrUpdater<liveListTpye>,
+  page: number
+) => {
+  axios
+    .get("/FlightStatusList/getFlightStatusList", {
+      params: {
+        serviceKey: VITE_APP_AIR_KEY + "==",
+        schLineType: "D",
+        schIOType: "O",
+        pageNo: 14,
+      },
+      headers: headerConfig,
+    })
+    .then((response) => {
+      setliveState(response.data.response.body.items.item);
+      console.log(response.data.response.body);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+export { totallive, liveairplane };
