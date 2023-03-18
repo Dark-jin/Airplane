@@ -56,7 +56,10 @@ const Main = () => {
               )}
             </div>
             <div className="grid grid-cols-3 mt-4">
-              <div className="text-lg font-semibold">Time : {item.std}</div>
+              <div className="text-lg font-semibold">
+                Time : {item.std.toString().substring(0, 2)}:
+                {item.std.toString().substring(2, 4)}
+              </div>
               <div className="text-lg font-semibold">
                 {item.line == "국내"
                   ? "Domestic Flight"
