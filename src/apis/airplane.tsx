@@ -33,7 +33,8 @@ const totallive = (setTotal: SetterOrUpdater<number>) => {
 
 const liveairplane = (
   setliveState: SetterOrUpdater<liveListTpye>,
-  time: string
+  time: string,
+  line: string
 ) => {
   axios
     .get("/FlightStatusList/getFlightStatusList", {
@@ -41,7 +42,7 @@ const liveairplane = (
         serviceKey: VITE_APP_AIR_KEY + "==",
         schStTime: time,
         schEdTime: "1800",
-        schLineType: "D",
+        schLineType: line,
         schIOType: "O",
         pageNo: 1,
       },
