@@ -1,5 +1,5 @@
 import React from "react";
-import { liveListTpye } from "../type";
+import { liveListTpye, domasticType } from "../type";
 import { atom } from "recoil";
 
 const liveState = atom<liveListTpye>({
@@ -30,4 +30,69 @@ const totalliveState = atom<number>({
   key: "totalData",
   default: 1,
 });
-export { liveState, totalliveState };
+const domasticState = atom<domasticType>({
+  key: "domasticData",
+  default: [
+    {
+      eng: "GMP",
+      kor: "김포/서울",
+    },
+    {
+      eng: "ICN",
+      kor: "인천",
+    },
+    {
+      eng: "PUS",
+      kor: "김해/부산",
+    },
+    {
+      eng: "TAE",
+      kor: "대구",
+    },
+    {
+      eng: "CJJ",
+      kor: "청주",
+    },
+    {
+      eng: "KUV",
+      kor: "군산",
+    },
+    {
+      eng: "RSU",
+      kor: "여수",
+    },
+    {
+      eng: "MWX",
+      kor: "원주",
+    },
+    {
+      eng: "KPO",
+      kor: "포항",
+    },
+    {
+      eng: "HIN",
+      kor: "사천",
+    },
+    {
+      eng: "MWX",
+      kor: "무안",
+    },
+    {
+      eng: "KWJ",
+      kor: "광주",
+    },
+    {
+      eng: "YNY",
+      kor: "양양",
+    },
+    {
+      eng: "USN",
+      kor: "울산",
+    },
+    {
+      eng: "CJU",
+      kor: "제주",
+    },
+  ],
+});
+export { liveState, totalliveState, domasticState };

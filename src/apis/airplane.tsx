@@ -24,7 +24,7 @@ const totallive = (setTotal: SetterOrUpdater<number>) => {
     })
     .then((response) => {
       setTotal(response.data.response.body.totalCount);
-      console.log(response.data.response.body.totalCount);
+      //console.log(response.data.response.body.totalCount);
     })
     .catch((error) => {
       console.log(error);
@@ -33,7 +33,6 @@ const totallive = (setTotal: SetterOrUpdater<number>) => {
 
 const liveairplane = (
   setliveState: SetterOrUpdater<liveListTpye>,
-  page: number,
   time: string
 ) => {
   axios
@@ -50,7 +49,7 @@ const liveairplane = (
     })
     .then((response) => {
       setliveState(response.data.response.body.items.item);
-      console.log(response.data.response.body);
+      //console.log(response.data.response.body);
     })
     .catch((error) => {
       console.log(error);

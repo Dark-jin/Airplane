@@ -17,4 +17,8 @@ type liveListTpye = {
   rmKor: string;
   std: string;
 }[];
-export type { liveListTpye };
+type domasticType = {
+  eng: string;
+  kor: string;
+}[];
+export type { liveListTpye, domasticType };
