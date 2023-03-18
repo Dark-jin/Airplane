@@ -8,8 +8,8 @@ const Main = () => {
   const [total, setTotal] = useRecoilState(totalliveState);
   const domastic = useRecoilState(domasticState);
   const today = new Date();
-  const hours = today.getHours();
-  const minutes = today.getMinutes();
+  const hours = ("0" + today.getHours()).slice(-2);
+  const minutes = ("0" + today.getMinutes()).slice(-2);
   const nowtime = hours.toString() + minutes.toString();
 
   useEffect(() => {
@@ -54,6 +54,9 @@ const Main = () => {
                   : "No Data"}
               </div>
               <div className="text-lg font-semibold">GATE : {item.gate}</div>
+              <div></div>
+              <div>{item.line}</div>
+              <div></div>
             </div>
           </div>
         </div>
