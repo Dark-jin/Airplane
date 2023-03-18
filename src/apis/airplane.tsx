@@ -14,7 +14,8 @@ const totallive = (setTotal: SetterOrUpdater<number>) => {
     .get("/FlightStatusList/getFlightStatusList", {
       params: {
         serviceKey: VITE_APP_AIR_KEY + "==",
-        //schStTime: "0900",
+        schStTime: "1400",
+        schEdTime: "1800",
         schLineType: "D",
         schIOType: "O",
         pageNo: 1,
@@ -32,15 +33,18 @@ const totallive = (setTotal: SetterOrUpdater<number>) => {
 
 const liveairplane = (
   setliveState: SetterOrUpdater<liveListTpye>,
-  page: number
+  page: number,
+  time: string
 ) => {
   axios
     .get("/FlightStatusList/getFlightStatusList", {
       params: {
         serviceKey: VITE_APP_AIR_KEY + "==",
+        schStTime: time,
+        schEdTime: "1800",
         schLineType: "D",
         schIOType: "O",
-        pageNo: 14,
+        pageNo: 1,
       },
       headers: headerConfig,
     })

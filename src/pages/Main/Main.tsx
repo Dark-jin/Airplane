@@ -6,12 +6,16 @@ import { liveState, totalliveState } from "../../states/atom";
 const Main = () => {
   const [livestate, setliveState] = useRecoilState(liveState);
   const [total, setTotal] = useRecoilState(totalliveState);
+  const today = new Date();
+  const hours = today.getHours();
+  const minutes = today.getMinutes();
+  const nowtime = hours.toString() + minutes.toString();
 
   useEffect(() => {
     totallive(setTotal);
-    liveairplane(setliveState, Math.ceil(total / 10));
+    liveairplane(setliveState, Math.ceil(total / 10), nowtime);
   }, []);
-  console.log(Math.ceil(total / 10));
+  //Time : {item.std.substring(0, 2)}h {item.std.substring(2, 4)}m
   return (
     <>
       <h1>AIR AIR AIR</h1>
@@ -32,9 +36,7 @@ const Main = () => {
             </div>
             <div className="text-xl font-bold mt-6">{item.city}</div>
             <div className="grid grid-cols-3 mt-6">
-              <div className="text-lg font-semibold">
-                Time : {item.std.substring(0, 2)}h {item.std.substring(2, 4)}m
-              </div>
+              <div className="text-lg font-semibold">Time : {item.std}</div>
               <div className="text-lg font-semibold">
                 {item.line == "국내"
                   ? "Domestic Flight"
