@@ -41,7 +41,7 @@ const liveairplane = (
       params: {
         serviceKey: VITE_APP_AIR_KEY + "==",
         schStTime: time,
-        schEdTime: "1800",
+        schEdTime: "2400",
         schLineType: line,
         schIOType: "O",
         pageNo: 1,
