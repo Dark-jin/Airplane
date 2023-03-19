@@ -56,4 +56,16 @@ const liveairplane = (
       console.log(error);
     });
 };
-export { totallive, liveairplane };
+const liveparking = () => {
+  axios
+    .get("AirportParking/airportparkingRT", {
+      params: {
+        serviceKey: VITE_APP_AIR_KEY + "==",
+      },
+      headers: headerConfig,
+    })
+    .then((response) => {
+      console.log(response.data.response.body.items.item);
+    });
+};
+export { totallive, liveairplane, liveparking };
