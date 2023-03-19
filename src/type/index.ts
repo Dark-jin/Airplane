@@ -21,4 +21,15 @@ type domasticType = {
   eng: string;
   kor: string;
 }[];
-export type { liveListTpye, domasticType };
+type parkingType = {
+  aprEng: string;
+  aprKor: string;
+  parkingAirportCodeName: string;
+  parkingFullSpace: string;
+  parkingGetdate: string;
+  parkingGettime: string;
+  parkingIincnt: number;
+  parkingIoutcnt: number;
+  parkingIstay: number;
+}[];
+export type { liveListTpye, domasticType, parkingType };

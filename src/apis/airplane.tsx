@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { SetterOrUpdater } from "recoil";
-import { liveListTpye } from "../type";
+import { liveListTpye, parkingType } from "../type";
 
 const { VITE_APP_AIR_KEY } = import.meta.env;
 
@@ -56,7 +56,7 @@ const liveairplane = (
       console.log(error);
     });
 };
-const liveparking = () => {
+const liveparking = (setParking: SetterOrUpdater<parkingType>) => {
   axios
     .get("AirportParking/airportparkingRT", {
       params: {
@@ -66,6 +66,7 @@ const liveparking = () => {
     })
     .then((response) => {
       console.log(response.data.response.body.items.item);
+      setParking(response.data.response.body.items.item);
     });
 };
 export { totallive, liveairplane, liveparking };
