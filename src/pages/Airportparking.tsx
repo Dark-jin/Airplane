@@ -72,10 +72,10 @@ const Airportparking = () => {
       </div>
       <div className="font-bold text-4xl mb-8">실시간 주차장</div>
       <Parkingmodal modalnumber={modalnumber} name={name} />
-      <div className="pr-8 pl-8 border-solid border-black border-8">
+      <div className="pr-8 pl-8 border-solid border-black border-8  bg-gray-300">
         <div className="grid grid-cols-4 gap-8">
           <div className="mt-8">
-            <div className=" bg-slate-300">
+            <div className="border-dashed border-black border-4 bg-white">
               <label
                 htmlFor="my-modal-1"
                 className="btn mt-8 mb-8 bg-blue-600"
@@ -86,7 +86,7 @@ const Airportparking = () => {
             </div>
           </div>
           <div className="mt-8">
-            <div className=" bg-slate-300">
+            <div className="border-dashed border-black border-4 bg-white">
               <label
                 htmlFor="my-modal-2"
                 className="btn mt-8 mb-8 bg-blue-600"
@@ -97,7 +97,7 @@ const Airportparking = () => {
             </div>
           </div>
           <div className="mt-8">
-            <div className=" bg-slate-300">
+            <div className="border-dashed border-black border-4 bg-white">
               <label
                 htmlFor="my-modal-3"
                 className="btn mt-8 mb-8 bg-blue-600"
@@ -108,7 +108,7 @@ const Airportparking = () => {
             </div>
           </div>
           <div className="mt-8">
-            <div className=" bg-slate-300">
+            <div className="border-dashed border-black border-4 bg-white">
               <label
                 htmlFor="my-modal-4"
                 className="btn mt-8 mb-8 bg-blue-600"
@@ -119,7 +119,7 @@ const Airportparking = () => {
             </div>
           </div>
           <div>
-            <div className=" bg-slate-300">
+            <div className="border-dashed border-black border-4 bg-white">
               <label
                 htmlFor="my-modal-5"
                 className="btn mt-8 mb-8 bg-blue-600"
@@ -130,7 +130,7 @@ const Airportparking = () => {
             </div>
           </div>
           <div>
-            <div className=" bg-slate-300">
+            <div className="border-dashed border-black border-4 bg-white">
               <label
                 htmlFor="my-modal-6"
                 className="btn mt-8 mb-8 bg-blue-600"
@@ -141,7 +141,7 @@ const Airportparking = () => {
             </div>
           </div>
           <div>
-            <div className=" bg-slate-300">
+            <div className="border-dashed border-black border-4 bg-white">
               <label
                 htmlFor="my-modal-7"
                 className="btn mt-8 mb-8 bg-blue-600"
@@ -152,7 +152,7 @@ const Airportparking = () => {
             </div>
           </div>
           <div>
-            <div className=" bg-slate-300">
+            <div className="border-dashed border-black border-4 bg-white">
               <label
                 htmlFor="my-modal-8"
                 className="btn mt-8 mb-8 bg-blue-600"
@@ -163,7 +163,7 @@ const Airportparking = () => {
             </div>
           </div>
           <div>
-            <div className=" bg-slate-300">
+            <div className="border-dashed border-black border-4 bg-white">
               <label
                 htmlFor="my-modal-9"
                 className="btn mt-8 mb-8 bg-blue-600"
@@ -174,7 +174,7 @@ const Airportparking = () => {
             </div>
           </div>
           <div>
-            <div className=" bg-slate-300">
+            <div className="border-dashed border-black border-4 bg-white">
               <label
                 htmlFor="my-modal-10"
                 className="btn mt-8 mb-8 bg-blue-600"
@@ -185,7 +185,7 @@ const Airportparking = () => {
             </div>
           </div>
           <div>
-            <div className=" bg-slate-300">
+            <div className="border-dashed border-black border-4 bg-white">
               <label
                 htmlFor="my-modal-11"
                 className="btn mt-8 mb-8 bg-blue-600"
@@ -196,7 +196,7 @@ const Airportparking = () => {
             </div>
           </div>
           <div>
-            <div className=" bg-slate-300">
+            <div className="border-dashed border-black border-4 bg-white">
               <label
                 htmlFor="my-modal-12"
                 className="btn mt-8 mb-8 bg-blue-600"
@@ -207,7 +207,7 @@ const Airportparking = () => {
             </div>
           </div>
           <div className="mb-8">
-            <div className=" bg-slate-300">
+            <div className="border-dashed border-black border-4 bg-white">
               <label
                 htmlFor="my-modal-13"
                 className="btn mt-8 mb-8 bg-blue-600"
@@ -215,6 +215,21 @@ const Airportparking = () => {
               >
                 양양국제공항
               </label>
+            </div>
+          </div>
+          <div className="mb-8">
+            <div className="border-dashed border-black border-4 bg-white">
+              <div className=" mt-8 mb-28"></div>
+            </div>
+          </div>
+          <div className="mb-8">
+            <div className="border-dashed border-black border-4 bg-white">
+              <div className=" mt-8 mb-28"></div>
+            </div>
+          </div>
+          <div className="mb-8">
+            <div className="border-dashed border-black border-4 bg-white">
+              <div className=" mt-8 mb-28"></div>
             </div>
           </div>
         </div>

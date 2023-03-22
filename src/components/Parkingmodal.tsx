@@ -36,6 +36,10 @@ const Parkingmodal = (props: props) => {
                   <div>전체 주차면 수 : {item.parkingFullSpace}</div>
                   <div>업데이트 시간 : {item.parkingGettime}</div>
                   <div>현재 주차되어 있는 차량 수 : {item.parkingIstay}</div>
+                  <div className="mt-2 text-xl font-bold">
+                    주차 가능 차량 수 :{" "}
+                    {Number(item.parkingFullSpace) - item.parkingIstay}
+                  </div>
                 </div>
               ) : null}
             </div>
