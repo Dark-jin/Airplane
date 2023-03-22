@@ -62,7 +62,7 @@ const domasticState = atom<domasticType>({
       kor: "여수",
     },
     {
-      eng: "MWX",
+      eng: "WJU",
       kor: "원주",
     },
     {
