@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Parkingmodal from "../components/Parkingmodal";
+import { useNavigate } from "react-router-dom";
 
 const Airportparking = () => {
   const [modalnumber, setModalnumber] = useState("");
   const [name, setName] = useState("");
+  const navigate = useNavigate();
+
+  const homeclick = () => {
+    navigate("/");
+  };
 
   const gmpparking = () => {
     setModalnumber("my-modal-1");
@@ -59,72 +65,158 @@ const Airportparking = () => {
   };
   return (
     <div>
+      <div className="text-start">
+        <button className="btn btn-ghost text-xl" onClick={homeclick}>
+          HOME
+        </button>
+      </div>
+      <div className="font-bold text-4xl mb-8">실시간 주차장</div>
       <Parkingmodal modalnumber={modalnumber} name={name} />
-      <div className="grid grid-cols-4 gap-10">
-        <div>
-          <label htmlFor="my-modal-1" className="btn" onClick={gmpparking}>
-            김포국제공항
-          </label>
-        </div>
-        <div>
-          <label htmlFor="my-modal-2" className="btn" onClick={pusparking}>
-            김해국제공항
-          </label>
-        </div>
-        <div>
-          <label htmlFor="my-modal-3" className="btn" onClick={cjuparking}>
-            제주국제공항
-          </label>
-        </div>
-        <div>
-          <label htmlFor="my-modal-4" className="btn" onClick={taeparking}>
-            대구국제공항
-          </label>
-        </div>
-        <div>
-          <label htmlFor="my-modal-5" className="btn" onClick={kwjparking}>
-            광주공항
-          </label>
-        </div>
-        <div>
-          <label htmlFor="my-modal-6" className="btn" onClick={rsuparking}>
-            여수공항
-          </label>
-        </div>
-        <div>
-          <label htmlFor="my-modal-7" className="btn" onClick={usnparking}>
-            울산공항
-          </label>
-        </div>
-        <div>
-          <label htmlFor="my-modal-8" className="btn" onClick={kuvparking}>
-            군산공항
-          </label>
-        </div>
-        <div>
-          <label htmlFor="my-modal-9" className="btn" onClick={wjuparking}>
-            원주공항
-          </label>
-        </div>
-        <div>
-          <label htmlFor="my-modal-10" className="btn" onClick={cjjparking}>
-            청주국제공항
-          </label>
-        </div>
-        <div>
-          <label htmlFor="my-modal-11" className="btn" onClick={hinparking}>
-            사천국제공항
-          </label>
-        </div>
-        <div>
-          <label htmlFor="my-modal-12" className="btn" onClick={mwxparking}>
-            무안공항
-          </label>
-        </div>
-        <div>
-          <label htmlFor="my-modal-13" className="btn" onClick={ynyparking}>
-            양양국제공항
-          </label>
+      <div className="pr-8 pl-8 border-solid border-black border-8">
+        <div className="grid grid-cols-4 gap-8">
+          <div className="mt-8">
+            <div className=" bg-slate-300">
+              <label
+                htmlFor="my-modal-1"
+                className="btn mt-8 mb-8 bg-blue-600"
+                onClick={gmpparking}
+              >
+                김포국제공항
+              </label>
+            </div>
+          </div>
+          <div className="mt-8">
+            <div className=" bg-slate-300">
+              <label
+                htmlFor="my-modal-2"
+                className="btn mt-8 mb-8 bg-blue-600"
+                onClick={pusparking}
+              >
+                김해국제공항
+              </label>
+            </div>
+          </div>
+          <div className="mt-8">
+            <div className=" bg-slate-300">
+              <label
+                htmlFor="my-modal-3"
+                className="btn mt-8 mb-8 bg-blue-600"
+                onClick={cjuparking}
+              >
+                제주국제공항
+              </label>
+            </div>
+          </div>
+          <div className="mt-8">
+            <div className=" bg-slate-300">
+              <label
+                htmlFor="my-modal-4"
+                className="btn mt-8 mb-8 bg-blue-600"
+                onClick={taeparking}
+              >
+                대구국제공항
+              </label>
+            </div>
+          </div>
+          <div>
+            <div className=" bg-slate-300">
+              <label
+                htmlFor="my-modal-5"
+                className="btn mt-8 mb-8 bg-blue-600"
+                onClick={kwjparking}
+              >
+                광주공항
+              </label>
+            </div>
+          </div>
+          <div>
+            <div className=" bg-slate-300">
+              <label
+                htmlFor="my-modal-6"
+                className="btn mt-8 mb-8 bg-blue-600"
+                onClick={rsuparking}
+              >
+                여수공항
+              </label>
+            </div>
+          </div>
+          <div>
+            <div className=" bg-slate-300">
+              <label
+                htmlFor="my-modal-7"
+                className="btn mt-8 mb-8 bg-blue-600"
+                onClick={usnparking}
+              >
+                울산공항
+              </label>
+            </div>
+          </div>
+          <div>
+            <div className=" bg-slate-300">
+              <label
+                htmlFor="my-modal-8"
+                className="btn mt-8 mb-8 bg-blue-600"
+                onClick={kuvparking}
+              >
+                군산공항
+              </label>
+            </div>
+          </div>
+          <div>
+            <div className=" bg-slate-300">
+              <label
+                htmlFor="my-modal-9"
+                className="btn mt-8 mb-8 bg-blue-600"
+                onClick={wjuparking}
+              >
+                원주공항
+              </label>
+            </div>
+          </div>
+          <div>
+            <div className=" bg-slate-300">
+              <label
+                htmlFor="my-modal-10"
+                className="btn mt-8 mb-8 bg-blue-600"
+                onClick={cjjparking}
+              >
+                청주국제공항
+              </label>
+            </div>
+          </div>
+          <div>
+            <div className=" bg-slate-300">
+              <label
+                htmlFor="my-modal-11"
+                className="btn mt-8 mb-8 bg-blue-600"
+                onClick={hinparking}
+              >
+                사천국제공항
+              </label>
+            </div>
+          </div>
+          <div>
+            <div className=" bg-slate-300">
+              <label
+                htmlFor="my-modal-12"
+                className="btn mt-8 mb-8 bg-blue-600"
+                onClick={mwxparking}
+              >
+                무안공항
+              </label>
+            </div>
+          </div>
+          <div className="mb-8">
+            <div className=" bg-slate-300">
+              <label
+                htmlFor="my-modal-13"
+                className="btn mt-8 mb-8 bg-blue-600"
+                onClick={ynyparking}
+              >
+                양양국제공항
+              </label>
+            </div>
+          </div>
         </div>
       </div>
     </div>
