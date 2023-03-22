@@ -30,7 +30,7 @@ const Main = () => {
       <h2>PLANE</h2>
       <div className="grid grid-cols-2">
         <div>
-          <ul className="menu menu-vertical lg:menu-horizontal bg-base-100 rounded-box p-0">
+          <ul className="menu menu-vertical lg:menu-horizontal bg-base-100 rounded-box p-0 font-bold">
             <li onClick={() => setLine("D")}>
               <a>국내선</a>
             </li>
@@ -39,8 +39,13 @@ const Main = () => {
             </li>
           </ul>
         </div>
-        <div>
-          <button onClick={parkingbtn}>실시간 주차장</button>
+        <div className="mt-3">
+          <button
+            className="btn btn-ghost text-base font-bold"
+            onClick={parkingbtn}
+          >
+            실시간 주차장
+          </button>
         </div>
       </div>
       {livestate.map((item, index) => (
