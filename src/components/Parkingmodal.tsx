@@ -1,19 +1,29 @@
 import { useEffect } from "react";
-import { liveparking } from "../apis/airplane";
+import { liveparking, liveparkingcongestion } from "../apis/airplane";
 import { useRecoilState } from "recoil";
-import { parkingState } from "../states/atom";
+import { parkingState, parkingcongestionState } from "../states/atom";
 
 interface props {
   modalnumber: string;
   name: string;
+  airport: string;
 }
 
 const Parkingmodal = (props: props) => {
   const [parking, setParking] = useRecoilState(parkingState);
-  const { modalnumber, name } = props;
+  const [parkingcongestion, setParkingcongestion] = useRecoilState(
+    parkingcongestionState
+  );
+  const { modalnumber, name, airport } = props;
+
   useEffect(() => {
     liveparking(setParking);
   }, []);
+  useEffect(() => {
+    liveparkingcongestion(airport, setParkingcongestion);
+  }, [airport]);
+  console.log(parkingcongestion);
+
   return (
     <div>
       <input type="checkbox" id={modalnumber} className="modal-toggle" />
@@ -25,25 +35,39 @@ const Parkingmodal = (props: props) => {
           >
             X
           </label>
-          <h3>PARKING</h3>
-          {parking.map((item, index) => (
-            <div key={index} className="mt-5">
-              {item.aprKor === name ? (
-                <div>
-                  <div>공항명(영어) : {item.aprEng}</div>
-                  <div>공항명(한글) : {item.aprKor}</div>
-                  <div>주차장 : {item.parkingAirportCodeName}</div>
-                  <div>전체 주차면 수 : {item.parkingFullSpace}</div>
-                  <div>업데이트 시간 : {item.parkingGettime}</div>
-                  <div>현재 주차되어 있는 차량 수 : {item.parkingIstay}</div>
-                  <div className="mt-2 text-xl font-bold">
-                    주차 가능 차량 수 :{" "}
-                    {Number(item.parkingFullSpace) - item.parkingIstay}
+          <h2>PARKING</h2>
+          {/* <div>
+            {parkingcongestion.map((item, index) => (
+              <div key={index} className="mt-5">
+                <div>{item.parkingCongestion}</div>
+              </div>
+            ))}
+          </div> */}
+          <div>
+            {parking.map((item, index) => (
+              <div key={index} className="mt-5">
+                {item.aprKor === name ? (
+                  <div>
+                    <div className="font-bold text-lg">{item.aprEng}</div>
+                    <div className="font-bold text-lg">{item.aprKor}</div>
+                    <div className="font-bold text-base">
+                      주차장 : {item.parkingAirportCodeName}
+                    </div>
+                    <div className="font-bold text-base">
+                      전체 주차면 수 : {item.parkingFullSpace}
+                    </div>
+                    <div className="font-bold text-lg">
+                      업데이트 시간 : {item.parkingGettime}
+                    </div>
+                    <div className="mt-2 text-xl font-bold">
+                      주차 가능 차량 수 :{" "}
+                      {Number(item.parkingFullSpace) - item.parkingIstay}
+                    </div>
                   </div>
-                </div>
-              ) : null}
-            </div>
-          ))}
+                ) : null}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

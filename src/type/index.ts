@@ -32,4 +32,15 @@ type parkingType = {
   parkingIoutcnt: number;
   parkingIstay: number;
 }[];
-export type { liveListTpye, domasticType, parkingType };
+type parkingcongestionType = {
+  airportEng: string;
+  airportKor: string;
+  parkingAirportCodeName: string;
+  parkingCongestion: string;
+  parkingCongestionDegree: string;
+  parkingOccupiedSpace: number;
+  parkingTotalSpace: number;
+  sysGetdate: string;
+  sysGettime: string;
+}[];
+export type { liveListTpye, domasticType, parkingType, parkingcongestionType };

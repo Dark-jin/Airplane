@@ -18,6 +18,12 @@ export default defineConfig({
         secure: true,
         ws: true,
       },
+      "/AirportParkingCongestion": {
+        target: "http://openapi.airport.co.kr/service/rest",
+        changeOrigin: true,
+        secure: true,
+        ws: true,
+      },
     },
   },
 });

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { SetterOrUpdater } from "recoil";
-import { liveListTpye, parkingType } from "../type";
+import { liveListTpye, parkingType, parkingcongestionType } from "../type";
 
 const { VITE_APP_AIR_KEY } = import.meta.env;
 
@@ -24,7 +24,6 @@ const totallive = (setTotal: SetterOrUpdater<number>) => {
     })
     .then((response) => {
       setTotal(response.data.response.body.totalCount);
-      //console.log(response.data.response.body.totalCount);
     })
     .catch((error) => {
       console.log(error);
@@ -50,7 +49,6 @@ const liveairplane = (
     })
     .then((response) => {
       setliveState(response.data.response.body.items.item);
-      //console.log(response.data.response.body);
     })
     .catch((error) => {
       console.log(error);
@@ -65,8 +63,26 @@ const liveparking = (setParking: SetterOrUpdater<parkingType>) => {
       headers: headerConfig,
     })
     .then((response) => {
-      console.log(response.data.response.body.items.item);
       setParking(response.data.response.body.items.item);
     });
 };
-export { totallive, liveairplane, liveparking };
+const liveparkingcongestion = (
+  airport: string,
+  setParkingcongestion: SetterOrUpdater<parkingcongestionType>
+) => {
+  axios
+    .get("/AirportParkingCongestion/airportParkingCongestionRT", {
+      params: {
+        serviceKey: VITE_APP_AIR_KEY + "==",
+        numOfRows: 10,
+        pageNo: 1,
+        schAirportCode: airport,
+      },
+      headers: headerConfig,
+    })
+    .then((response) => {
+      console.log(response.data.response.body.items.item);
+      setParkingcongestion(response.data.response.body.items.item);
+    });
+};
+export { totallive, liveairplane, liveparking, liveparkingcongestion };

@@ -1,5 +1,10 @@
 import React from "react";
-import { liveListTpye, domasticType, parkingType } from "../type";
+import {
+  liveListTpye,
+  domasticType,
+  parkingType,
+  parkingcongestionType,
+} from "../type";
 import { atom } from "recoil";
 
 const liveState = atom<liveListTpye>({
@@ -111,4 +116,26 @@ const parkingState = atom<parkingType>({
     },
   ],
 });
-export { liveState, totalliveState, domasticState, parkingState };
+const parkingcongestionState = atom<parkingcongestionType>({
+  key: "parkingcongestionData",
+  default: [
+    {
+      airportEng: "",
+      airportKor: "",
+      parkingAirportCodeName: "",
+      parkingCongestion: "",
+      parkingCongestionDegree: "",
+      parkingOccupiedSpace: 0,
+      parkingTotalSpace: 0,
+      sysGetdate: "",
+      sysGettime: "",
+    },
+  ],
+});
+export {
+  liveState,
+  totalliveState,
+  domasticState,
+  parkingState,
+  parkingcongestionState,
+};
