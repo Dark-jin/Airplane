@@ -79,12 +79,18 @@ const Airportparking = () => {
   };
   return (
     <div>
-      <div className="text-start">
-        <button className="btn btn-ghost text-xl" onClick={homeclick}>
-          HOME
-        </button>
+      <div className="grid grid-cols-3">
+        <div className="text-start">
+          <button className="btn btn-ghost text-xl" onClick={homeclick}>
+            HOME
+          </button>
+        </div>
+        <div className="font-bold text-4xl mb-8">실시간 주차장</div>
+        <div className="font-bold text-end">
+          <div className="mb-3">주차장 혼잡률</div>
+          95% 이상 만차, 90%이상 혼잡, 90%미만 원할
+        </div>
       </div>
-      <div className="font-bold text-4xl mb-8">실시간 주차장</div>
       <div className="pr-8 pl-8 border-solid border-black border-8  bg-gray-300">
         <div className="grid grid-cols-4 gap-8">
           <div className="mt-8">
