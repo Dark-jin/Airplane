@@ -73,15 +73,15 @@ const liveparkingcongestion = (
   axios
     .get("/AirportParkingCongestion/airportParkingCongestionRT", {
       params: {
+        schAirportCode: airport,
         serviceKey: VITE_APP_AIR_KEY + "==",
         numOfRows: 10,
         pageNo: 1,
-        schAirportCode: airport,
       },
       headers: headerConfig,
     })
     .then((response) => {
-      console.log(response.data.response.body.items.item);
+      //console.log(response.data.response.body.items.item);
       setParkingcongestion(response.data.response.body.items.item);
     });
 };

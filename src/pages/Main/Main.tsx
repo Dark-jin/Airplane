@@ -23,7 +23,7 @@ const Main = () => {
     totallive(setTotal);
     liveairplane(setliveState, nowtime, line);
   }, [line]);
-  //Time : {item.std.substring(0, 2)}h {item.std.substring(2, 4)}m text-start place-items-start
+
   return (
     <>
       <h1>AIR AIR AIR</h1>

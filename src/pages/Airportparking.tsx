@@ -85,7 +85,6 @@ const Airportparking = () => {
         </button>
       </div>
       <div className="font-bold text-4xl mb-8">실시간 주차장</div>
-      <Parkingmodal modalnumber={modalnumber} name={name} airport={airport} />
       <div className="pr-8 pl-8 border-solid border-black border-8  bg-gray-300">
         <div className="grid grid-cols-4 gap-8">
           <div className="mt-8">
@@ -248,6 +247,7 @@ const Airportparking = () => {
           </div>
         </div>
       </div>
+      <Parkingmodal modalnumber={modalnumber} name={name} airport={airport} />
     </div>
   );
 };
