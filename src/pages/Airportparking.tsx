@@ -253,7 +253,7 @@ const Airportparking = () => {
           </div>
         </div>
       </div>
-      <Parkingmodal modalnumber={modalnumber} name={name} airport={airport} />
+      <Parkingmodal modalnumber={modalnumber} name={name} />
     </div>
   );
 };

@@ -6,23 +6,15 @@ import { parkingState, parkingcongestionState } from "../states/atom";
 interface props {
   modalnumber: string;
   name: string;
-  airport: string;
 }
 
 const Parkingmodal = (props: props) => {
   const [parking, setParking] = useRecoilState(parkingState);
-  const [parkingcongestion, setParkingcongestion] = useRecoilState(
-    parkingcongestionState
-  );
-  const { modalnumber, name, airport } = props;
-  const [max, setMax] = useState(0);
+  const { modalnumber, name } = props;
 
   useEffect(() => {
     liveparking(setParking);
   }, []);
-  useEffect(() => {
-    liveparkingcongestion(airport, setParkingcongestion);
-  }, [airport]);
 
   return (
     <div>
@@ -39,17 +31,14 @@ const Parkingmodal = (props: props) => {
           {parking.map((item, index) => (
             <div key={index} className="mt-5">
               {item.aprKor === name ? (
-                <div>
-                  <div className="font-bold text-lg">{item.aprEng}</div>
-                  <div className="font-bold text-lg">{item.aprKor}</div>
-                  <div className="font-bold text-base">
+                <div className="card w-96 ml-8 border-4 border-solid">
+                  <div className="font-bold text-xl mt-2">{item.aprEng}</div>
+                  <div className="font-bold text-xl mt-2">{item.aprKor}</div>
+                  <div className="font-bold text-xl mt-2">
                     주차장 : {item.parkingAirportCodeName}
                   </div>
-                  <div className="font-bold text-base">
+                  <div className="mt-2 font-bold text-xl">
                     전체 주차면 수 : {item.parkingFullSpace}
-                  </div>
-                  <div className="font-bold text-lg">
-                    업데이트 시간 : {item.parkingGettime}
                   </div>
                   <div className="mt-2 text-xl font-bold">
                     주차 가능 차량 수 :{" "}
