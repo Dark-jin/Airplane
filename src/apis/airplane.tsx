@@ -85,4 +85,27 @@ const liveparkingcongestion = (
       setParkingcongestion(response.data.response.body.items.item);
     });
 };
-export { totallive, liveairplane, liveparking, liveparkingcongestion };
+const domesticsearch = (date: string) => {
+  axios
+    .get("/DflightScheduleList/getDflightScheduleList", {
+      params: {
+        serviceKey: VITE_APP_AIR_KEY + "==",
+        schDate: date,
+      },
+      headers: headerConfig,
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+export {
+  totallive,
+  liveairplane,
+  liveparking,
+  liveparkingcongestion,
+  domesticsearch,
+};

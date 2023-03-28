@@ -18,6 +18,9 @@ const Main = () => {
   const parkingbtn = () => {
     navigate("/airport-parking");
   };
+  const searchbtn = () => {
+    navigate("/search");
+  };
 
   useEffect(() => {
     totallive(setTotal);
@@ -28,7 +31,7 @@ const Main = () => {
     <>
       <h1>AIR AIR AIR</h1>
       <h2>PLANE</h2>
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-3">
         <div>
           <ul className="menu menu-vertical lg:menu-horizontal bg-base-100 rounded-box p-0 font-bold">
             <li onClick={() => setLine("D")}>
@@ -38,6 +41,14 @@ const Main = () => {
               <a>국제선</a>
             </li>
           </ul>
+        </div>
+        <div className="mt-3">
+          <button
+            className="btn btn-ghost text-base font-bold"
+            onClick={searchbtn}
+          >
+            검색
+          </button>
         </div>
         <div className="mt-3">
           <button

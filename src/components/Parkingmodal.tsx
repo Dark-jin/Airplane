@@ -23,7 +23,7 @@ const Parkingmodal = (props: props) => {
         <div className="modal-box relative">
           <label
             htmlFor={modalnumber}
-            className="btn btn-sm btn-circle absolute right-2 top-2"
+            className="btn btn-sm btn-circle absolute right-2 top-2 mt-2"
           >
             X
           </label>
