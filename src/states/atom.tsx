@@ -4,6 +4,7 @@ import {
   domasticType,
   parkingType,
   parkingcongestionType,
+  domesticType,
 } from "../type";
 import { atom } from "recoil";
 
@@ -132,10 +133,29 @@ const parkingcongestionState = atom<parkingcongestionType>({
     },
   ],
 });
+const domesticState = atom<domesticType>({
+  key: "domesticData",
+  default: [
+    {
+      airlineEnglish: "",
+      airlineKorean: "",
+      arrivalcity: "",
+      arrivalcityCode: "",
+      domesticArrivalTime: "", // 도착시간
+      domesticEddate: "", // 운항 종료일
+      domesticStartTime: "", // 출발시간
+      domesticStdate: "", // 운항 시작일
+      flightPurpose: "",
+      startcity: "", // 출발공항
+      startcityCode: "",
+    },
+  ],
+});
 export {
   liveState,
   totalliveState,
   domasticState,
   parkingState,
   parkingcongestionState,
+  domesticState,
 };

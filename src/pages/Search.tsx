@@ -1,12 +1,15 @@
 import { domesticsearch } from "../apis/airplane";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { DatePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { TextField } from "@mui/material";
+import { useRecoilState } from "recoil";
+import { domesticState } from "../states/atom";
 
 const Search = () => {
+  const [domestic, setDomestic] = useRecoilState(domesticState);
   const [value, setValue] = useState<Dayjs | null>(null);
   let year = Number(value?.year());
   let month = String(Number(value?.month()) + 1);
@@ -28,13 +31,12 @@ const Search = () => {
   ) {
     day = "0" + day;
   }
-
   let date = Number(String(year) + month + day);
 
   const searchbtn = () => {
-    console.log(date);
-    domesticsearch(date);
+    domesticsearch(date, setDomestic);
   };
+
   return (
     <div>
       <h1>Search</h1>

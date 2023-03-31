@@ -1,7 +1,12 @@
 import axios from "axios";
 import React from "react";
 import { SetterOrUpdater } from "recoil";
-import { liveListTpye, parkingType, parkingcongestionType } from "../type";
+import {
+  domesticType,
+  liveListTpye,
+  parkingType,
+  parkingcongestionType,
+} from "../type";
 
 const { VITE_APP_AIR_KEY } = import.meta.env;
 
@@ -83,19 +88,27 @@ const liveparkingcongestion = (
     .then((response) => {
       //console.log(response.data.response.body.items.item);
       setParkingcongestion(response.data.response.body.items.item);
+    })
+    .catch((error) => {
+      console.log(error);
     });
 };
-const domesticsearch = (date: number) => {
+
+const domesticsearch = (
+  date: number,
+  setDomestic: SetterOrUpdater<domesticType>
+) => {
   axios
-    .get("/DflightScheduleList/getDflightScheduleList", {
+    .get("/FlightScheduleList/getDflightScheduleList", {
       params: {
-        schDate: date,
         serviceKey: VITE_APP_AIR_KEY + "==",
+        schDate: date,
+        pageNo: 1,
       },
       headers: headerConfig,
     })
     .then((response) => {
-      console.log(response);
+      setDomestic(response.data.response.body.items.item);
     })
     .catch((error) => {
       console.log(error);
