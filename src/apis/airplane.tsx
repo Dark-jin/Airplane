@@ -85,7 +85,7 @@ const liveparkingcongestion = (
       setParkingcongestion(response.data.response.body.items.item);
     });
 };
-const domesticsearch = (date: string) => {
+const domesticsearch = (date: number) => {
   axios
     .get("/DflightScheduleList/getDflightScheduleList", {
       params: {

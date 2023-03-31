@@ -10,12 +10,26 @@ const Search = () => {
   const [value, setValue] = useState<Dayjs | null>(null);
   let year = Number(value?.year());
   let month = String(Number(value?.month()) + 1);
-  let day = Number(value?.date());
+  let day = String(Number(value?.date()));
 
-  if (month !== "10" || "11" || "12") {
+  if (month !== "10" && month !== "11" && month !== "12") {
     month = "0" + month;
   }
-  let date = String(year) + String(month) + String(day);
+  if (
+    day === "1" ||
+    day === "2" ||
+    day === "3" ||
+    day === "4" ||
+    day === "5" ||
+    day === "6" ||
+    day === "7" ||
+    day === "8" ||
+    day === "9"
+  ) {
+    day = "0" + day;
+  }
+
+  let date = Number(String(year) + month + day);
 
   const searchbtn = () => {
     console.log(date);
