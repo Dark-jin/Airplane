@@ -89,8 +89,8 @@ const domesticsearch = (date: string) => {
   axios
     .get("/DflightScheduleList/getDflightScheduleList", {
       params: {
-        serviceKey: VITE_APP_AIR_KEY + "==",
         schDate: date,
+        serviceKey: VITE_APP_AIR_KEY + "==",
       },
       headers: headerConfig,
     })

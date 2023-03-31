@@ -24,8 +24,8 @@ export default defineConfig({
         secure: true,
         ws: true,
       },
-      "/rest": {
-        target: "http://openapi.airport.co.kr/service/",
+      "/DflightScheduleList": {
+        target: "http://openapi.airport.co.kr/service/rest",
         changeOrigin: true,
         secure: true,
         ws: true,
