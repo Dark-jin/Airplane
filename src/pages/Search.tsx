@@ -1,4 +1,4 @@
-import { domesticsearch } from "../apis/airplane";
+import { domesticSearchpage, domesticsearch } from "../apis/airplane";
 import React, { useEffect, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
@@ -27,6 +27,7 @@ const Search = () => {
   let day = String(Number(value?.date()));
   const [check, setCheck] = useState(false);
   const page = Math.ceil(Number(totalcount) / 10);
+  const [pagenumber, setPagenumber] = useState(1);
 
   if (month !== "10" && month !== "11" && month !== "12") {
     month = "0" + month;
@@ -47,17 +48,22 @@ const Search = () => {
   let date = Number(String(year) + month + day);
 
   const searchbtn = async () => {
-    await domesticsearch(date, setDomestic, depart, arrive, setTotalcount);
+    await domesticsearch(
+      date,
+      setDomestic,
+      depart,
+      arrive,
+      setTotalcount,
+      pagenumber
+    );
     setCheck(true);
   };
-  // useEffect(() => {
-  //   domesticsearch(date, setDomestic, depart, arrive, page);
-  // }, [page]);
+
   const homeclick = () => {
     navigate("/");
   };
-  const pagehandle = async (event: React.ChangeEvent<any>, value: any) => {
-    await domesticsearch(date, setDomestic, depart, arrive, value);
+  const pagehandle = (event: React.ChangeEvent<any>, value: any) => {
+    setPagenumber(value);
   };
 
   return (
@@ -116,6 +122,12 @@ const Search = () => {
           </button>
         </div>
       </div>
+      <Pagination
+        count={page}
+        page={pagenumber}
+        onChange={pagehandle}
+        className="mt-4"
+      />
       {check && (
         <div className="mt-4">
           {domestic.map((item, index) => (
@@ -167,7 +179,6 @@ const Search = () => {
           ))}
         </div>
       )}
-      <Pagination count={page} onChange={pagehandle} />
     </div>
   );
 };

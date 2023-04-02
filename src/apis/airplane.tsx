@@ -100,7 +100,8 @@ const domesticsearch = (
   setDomestic: SetterOrUpdater<domesticScheduleType>,
   startcity: string,
   endcity: string,
-  totalCount: SetterOrUpdater<totalcountType>
+  totalCount: SetterOrUpdater<totalcountType>,
+  pagenumber: number
 ) => {
   axios
     .get("/FlightScheduleList/getDflightScheduleList", {
@@ -109,38 +110,13 @@ const domesticsearch = (
         schDate: date,
         schDeptCityCode: startcity,
         schArrvCityCode: endcity,
-        pageNo: 1,
+        pageNo: pagenumber,
       },
       headers: headerConfig,
     })
     .then((response) => {
       setDomestic(response.data.response.body.items.item);
       totalCount(response.data.response.body.totalCount);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
-const domesticSearchpage = (
-  date: number,
-  setDomestic: SetterOrUpdater<domesticScheduleType>,
-  startcity: string,
-  endcity: string,
-  page: number
-) => {
-  axios
-    .get("/FlightScheduleList/getDflightScheduleList", {
-      params: {
-        serviceKey: VITE_APP_AIR_KEY + "==",
-        schDate: date,
-        schDeptCityCode: startcity,
-        schArrvCityCode: endcity,
-        pageNo: page,
-      },
-      headers: headerConfig,
-    })
-    .then((response) => {
-      setDomestic(response.data.response.body.items.item);
     })
     .catch((error) => {
       console.log(error);
@@ -153,5 +129,4 @@ export {
   liveparking,
   liveparkingcongestion,
   domesticsearch,
-  domesticSearchpage,
 };

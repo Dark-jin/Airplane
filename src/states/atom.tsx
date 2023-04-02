@@ -155,7 +155,7 @@ const domesticScheduleState = atom<domesticScheduleType>({
 const totalCount = atom<totalcountType>({
   key: "totalCount",
   default: {
-    totalCount: 0,
+    totalCount: 1,
   },
 });
 export {
