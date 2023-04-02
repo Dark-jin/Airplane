@@ -6,12 +6,16 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { TextField } from "@mui/material";
 import { useRecoilState } from "recoil";
-import { domesticState } from "../states/atom";
+import { domesticState, domesticScheduleState } from "../states/atom";
 import { useNavigate } from "react-router-dom";
 
 const Search = () => {
   const navigate = useNavigate();
-  const [domestic, setDomestic] = useRecoilState(domesticState);
+  const [domestic, setDomestic] = useRecoilState(domesticScheduleState);
+  const [startcity, setCity] = useRecoilState(domesticState);
+  const [endcity, setEndcity] = useRecoilState(domesticState);
+  const [depart, setDepart] = useState("");
+  const [arrive, setArrive] = useState("");
   const [value, setValue] = useState<Dayjs | null>(null);
   let year = Number(value?.year());
   let month = String(Number(value?.month()) + 1);
@@ -37,7 +41,7 @@ const Search = () => {
   let date = Number(String(year) + month + day);
 
   const searchbtn = async () => {
-    await domesticsearch(date, setDomestic);
+    await domesticsearch(date, setDomestic, depart, arrive);
     console.log(domestic);
     setCheck(true);
   };
@@ -53,7 +57,7 @@ const Search = () => {
         </button>
       </div>
       <h1>Search</h1>
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-4 gap-3">
         <div>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DesktopDatePicker
@@ -63,9 +67,33 @@ const Search = () => {
           </LocalizationProvider>
         </div>
         <div>
+          <select
+            className="select w-full max-w-xs select-bordered"
+            onChange={(e) => setDepart(e.target.value)}
+          >
+            {startcity.map((item, index) => (
+              <option key={index} value={item.eng}>
+                {item.kor}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <select
+            className="select w-full max-w-xs select-bordered"
+            onChange={(e) => setArrive(e.target.value)}
+          >
+            {endcity.map((item, index) => (
+              <option key={index} value={item.eng}>
+                {item.kor}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
           <button
             onClick={searchbtn}
-            className="btn btn-ghost text-base font-bold"
+            className="btn btn-ghost text-base font-bold border-1 border-black"
           >
             검색
           </button>

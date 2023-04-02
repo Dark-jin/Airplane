@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { liveairplane, totallive } from "../../apis/airplane";
 import { useRecoilState } from "recoil";
-import { liveState, totalliveState, domasticState } from "../../states/atom";
+import { liveState, totalliveState, domesticState } from "../../states/atom";
 import { useNavigate } from "react-router-dom";
 
 const Main = () => {
@@ -9,7 +9,7 @@ const Main = () => {
   const [livestate, setliveState] = useRecoilState(liveState);
   const [total, setTotal] = useRecoilState(totalliveState);
   const [line, setLine] = useState("D");
-  const domastic = useRecoilState(domasticState);
+  const domastic = useRecoilState(domesticState);
   const today = new Date();
   const hours = ("0" + today.getHours()).slice(-2);
   const minutes = ("0" + today.getMinutes()).slice(-2);

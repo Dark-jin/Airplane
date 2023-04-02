@@ -1,10 +1,10 @@
 import React from "react";
 import {
   liveListTpye,
-  domasticType,
+  domesticType,
   parkingType,
   parkingcongestionType,
-  domesticType,
+  domesticScheduleType,
 } from "../type";
 import { atom } from "recoil";
 
@@ -36,8 +36,8 @@ const totalliveState = atom<number>({
   key: "totalData",
   default: 1,
 });
-const domasticState = atom<domasticType>({
-  key: "domasticData",
+const domesticState = atom<domesticType>({
+  key: "domesticData",
   default: [
     {
       eng: "GMP",
@@ -133,8 +133,8 @@ const parkingcongestionState = atom<parkingcongestionType>({
     },
   ],
 });
-const domesticState = atom<domesticType>({
-  key: "domesticData",
+const domesticScheduleState = atom<domesticScheduleType>({
+  key: "domesticScheduleData",
   default: [
     {
       airlineEnglish: "",
@@ -148,14 +148,13 @@ const domesticState = atom<domesticType>({
       flightPurpose: "",
       startcity: "", // 출발공항
       startcityCode: "",
-      numOfRows: 0,
     },
   ],
 });
 export {
   liveState,
   totalliveState,
-  domasticState,
+  domesticScheduleState,
   parkingState,
   parkingcongestionState,
   domesticState,

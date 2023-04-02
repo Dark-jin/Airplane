@@ -17,7 +17,7 @@ type liveListTpye = {
   rmKor: string;
   std: string;
 }[];
-type domasticType = {
+type domesticType = {
   eng: string;
   kor: string;
 }[];
@@ -43,7 +43,7 @@ type parkingcongestionType = {
   sysGetdate: string;
   sysGettime: string;
 }[];
-type domesticType = {
+type domesticScheduleType = {
   airlineEnglish: string;
   airlineKorean: string;
   arrivalcity: string;
@@ -55,12 +55,11 @@ type domesticType = {
   flightPurpose: string;
   startcity: string; // 출발공항
   startcityCode: string;
-  numOfRows: number;
 }[];
 export type {
   liveListTpye,
-  domasticType,
+  domesticType,
   parkingType,
   parkingcongestionType,
-  domesticType,
+  domesticScheduleType,
 };

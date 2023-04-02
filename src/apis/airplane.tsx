@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { SetterOrUpdater } from "recoil";
 import {
+  domesticScheduleType,
   domesticType,
   liveListTpye,
   parkingType,
@@ -96,13 +97,17 @@ const liveparkingcongestion = (
 
 const domesticsearch = (
   date: number,
-  setDomestic: SetterOrUpdater<domesticType>
+  setDomestic: SetterOrUpdater<domesticScheduleType>,
+  startcity: string,
+  endcity: string
 ) => {
   axios
     .get("/FlightScheduleList/getDflightScheduleList", {
       params: {
         serviceKey: VITE_APP_AIR_KEY + "==",
         schDate: date,
+        schDeptCityCode: startcity,
+        schArrvCityCode: endcity,
         pageNo: 1,
       },
       headers: headerConfig,
