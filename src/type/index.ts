@@ -55,6 +55,7 @@ type domesticType = {
   flightPurpose: string;
   startcity: string; // 출발공항
   startcityCode: string;
+  numOfRows: number;
 }[];
 export type {
   liveListTpye,

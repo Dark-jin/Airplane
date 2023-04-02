@@ -77,14 +77,43 @@ const Search = () => {
           {domestic.map((item, index) => (
             <div key={index} className="flex flex-col w-full border-opacity-50">
               <div className="grid h-full card bg-base-300 rounded-box place-items-center">
-                <div>{item.airlineEnglish}</div>
-                <div>{item.airlineKorean}</div>
-                <div>출발 공항 : {item.startcity}</div>
-                <div>출발 시간 : {item.domesticStartTime}</div>
-                <div>도착 공항 : {item.arrivalcity}</div>
-                <div>도착 시간 : {item.domesticArrivalTime}</div>
+                <div className="text-lg font-bold">{item.airlineEnglish}</div>
+                <div className="text-lg font-bold">{item.airlineKorean}</div>
+                <div className="grid grid-rows-2">
+                  <div className="grid grid-cols-3 mt-4 gap-5 text-2xl font-bold">
+                    <div>
+                      {item.domesticStartTime.toString().substring(0, 2)} :{" "}
+                      {item.domesticStartTime.toString().substring(2, 4)}
+                    </div>
+                    <div>=====✈️=====</div>
+                    <div>
+                      {item.domesticArrivalTime.toString().substring(0, 2)} :{" "}
+                      {item.domesticArrivalTime.toString().substring(2, 4)}
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-3 mt-4 text-xl font-bold gap-6">
+                    <div>{item.startcity}</div>
+                    <div>
+                      {Number(
+                        item.domesticArrivalTime.toString().substring(0, 2)
+                      ) -
+                        Number(
+                          item.domesticStartTime.toString().substring(0, 2)
+                        )}
+                      h{" "}
+                      {Number(
+                        item.domesticArrivalTime.toString().substring(2, 4)
+                      ) -
+                        Number(
+                          item.domesticStartTime.toString().substring(2, 4)
+                        )}
+                      m
+                    </div>
+                    <div>{item.arrivalcity}</div>
+                  </div>
+                </div>
               </div>
-              <div className="divider">OR</div>
+              {index !== 9 ? <div className="divider">OR</div> : null}
             </div>
           ))}
         </div>

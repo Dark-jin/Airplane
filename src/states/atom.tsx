@@ -148,6 +148,7 @@ const domesticState = atom<domesticType>({
       flightPurpose: "",
       startcity: "", // 출발공항
       startcityCode: "",
+      numOfRows: 0,
     },
   ],
 });
