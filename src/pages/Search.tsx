@@ -62,7 +62,7 @@ const Search = () => {
   const homeclick = () => {
     navigate("/");
   };
-  const pagehandle = (event: React.ChangeEvent<any>, value: any) => {
+  const pagehandle = (event: React.ChangeEvent<unknown>, value: any) => {
     setPagenumber(value);
   };
 
@@ -151,18 +151,46 @@ const Search = () => {
                     <div>{item.startcity}</div>
                     <div>
                       {Number(
-                        item.domesticArrivalTime.toString().substring(0, 2)
+                        item.domesticArrivalTime.toString().substring(2, 4)
                       ) -
                         Number(
-                          item.domesticStartTime.toString().substring(0, 2)
-                        )}
+                          item.domesticStartTime.toString().substring(2, 4)
+                        ) <
+                      0
+                        ? Number(
+                            item.domesticArrivalTime.toString().substring(0, 2)
+                          ) -
+                          Number(
+                            item.domesticStartTime.toString().substring(0, 2)
+                          ) -
+                          1
+                        : Number(
+                            item.domesticArrivalTime.toString().substring(0, 2)
+                          ) -
+                          Number(
+                            item.domesticStartTime.toString().substring(0, 2)
+                          )}
                       h{" "}
                       {Number(
                         item.domesticArrivalTime.toString().substring(2, 4)
                       ) -
                         Number(
                           item.domesticStartTime.toString().substring(2, 4)
-                        )}
+                        ) <
+                      0
+                        ? Number(
+                            item.domesticArrivalTime.toString().substring(2, 4)
+                          ) -
+                          Number(
+                            item.domesticStartTime.toString().substring(2, 4)
+                          ) +
+                          60
+                        : Number(
+                            item.domesticArrivalTime.toString().substring(2, 4)
+                          ) -
+                          Number(
+                            item.domesticStartTime.toString().substring(2, 4)
+                          )}
                       m
                     </div>
                     <div>{item.arrivalcity}</div>
@@ -174,7 +202,9 @@ const Search = () => {
                   </div>
                 </div>
               </div>
-              {index !== 9 ? <div className="divider">OR</div> : null}
+              {index !== domestic.length - 1 ? (
+                <div className="divider">OR</div>
+              ) : null}
             </div>
           ))}
         </div>
