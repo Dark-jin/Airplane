@@ -122,12 +122,14 @@ const Search = () => {
           </button>
         </div>
       </div>
-      <Pagination
-        count={page}
-        page={pagenumber}
-        onChange={pagehandle}
-        className="mt-4"
-      />
+      {check && (
+        <Pagination
+          count={page}
+          page={pagenumber}
+          onChange={pagehandle}
+          className="mt-4"
+        />
+      )}
       {check && (
         <div className="mt-4">
           {domestic.map((item, index) => (
