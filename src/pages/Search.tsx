@@ -132,83 +132,113 @@ const Search = () => {
       )}
       {check && (
         <div className="mt-4">
-          {domestic.map((item, index) => (
-            <div key={index} className="flex flex-col w-full border-opacity-50">
-              <div className="grid h-full card bg-base-300 rounded-box place-items-center">
-                <div className="text-lg font-bold">{item.airlineEnglish}</div>
-                <div className="text-lg font-bold">{item.airlineKorean}</div>
-                <div className="grid grid-rows-3">
-                  <div className="grid grid-cols-3 mt-4 gap-5 text-2xl font-bold">
-                    <div>
-                      {item.domesticStartTime.toString().substring(0, 2)} :{" "}
-                      {item.domesticStartTime.toString().substring(2, 4)}
+          {Number(totalcount) !== 0 ? (
+            <div>
+              {domestic.map((item, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col w-full border-opacity-50"
+                >
+                  <div className="grid h-full card bg-base-300 rounded-box place-items-center">
+                    <div className="text-lg font-bold">
+                      {item.airlineEnglish}
                     </div>
-                    <div>=====✈️=====</div>
-                    <div>
-                      {item.domesticArrivalTime.toString().substring(0, 2)} :{" "}
-                      {item.domesticArrivalTime.toString().substring(2, 4)}
+                    <div className="text-lg font-bold">
+                      {item.airlineKorean}
                     </div>
-                  </div>
-                  <div className="grid grid-cols-3 mt-4 text-xl font-bold gap-6">
-                    <div>{item.startcity}</div>
-                    <div>
-                      {Number(
-                        item.domesticArrivalTime.toString().substring(2, 4)
-                      ) -
-                        Number(
-                          item.domesticStartTime.toString().substring(2, 4)
-                        ) <
-                      0
-                        ? Number(
-                            item.domesticArrivalTime.toString().substring(0, 2)
-                          ) -
-                          Number(
-                            item.domesticStartTime.toString().substring(0, 2)
-                          ) -
-                          1
-                        : Number(
-                            item.domesticArrivalTime.toString().substring(0, 2)
-                          ) -
-                          Number(
-                            item.domesticStartTime.toString().substring(0, 2)
-                          )}
-                      h{" "}
-                      {Number(
-                        item.domesticArrivalTime.toString().substring(2, 4)
-                      ) -
-                        Number(
-                          item.domesticStartTime.toString().substring(2, 4)
-                        ) <
-                      0
-                        ? Number(
+                    <div className="grid grid-rows-3">
+                      <div className="grid grid-cols-3 mt-4 gap-5 text-2xl font-bold">
+                        <div>
+                          {item.domesticStartTime.toString().substring(0, 2)} :{" "}
+                          {item.domesticStartTime.toString().substring(2, 4)}
+                        </div>
+                        <div>=====✈️=====</div>
+                        <div>
+                          {item.domesticArrivalTime.toString().substring(0, 2)}{" "}
+                          :{" "}
+                          {item.domesticArrivalTime.toString().substring(2, 4)}
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-3 mt-4 text-xl font-bold gap-6">
+                        <div>{item.startcity}</div>
+                        <div>
+                          {Number(
                             item.domesticArrivalTime.toString().substring(2, 4)
                           ) -
-                          Number(
-                            item.domesticStartTime.toString().substring(2, 4)
-                          ) +
-                          60
-                        : Number(
+                            Number(
+                              item.domesticStartTime.toString().substring(2, 4)
+                            ) <
+                          0
+                            ? Number(
+                                item.domesticArrivalTime
+                                  .toString()
+                                  .substring(0, 2)
+                              ) -
+                              Number(
+                                item.domesticStartTime
+                                  .toString()
+                                  .substring(0, 2)
+                              ) -
+                              1
+                            : Number(
+                                item.domesticArrivalTime
+                                  .toString()
+                                  .substring(0, 2)
+                              ) -
+                              Number(
+                                item.domesticStartTime
+                                  .toString()
+                                  .substring(0, 2)
+                              )}
+                          h{" "}
+                          {Number(
                             item.domesticArrivalTime.toString().substring(2, 4)
                           ) -
-                          Number(
-                            item.domesticStartTime.toString().substring(2, 4)
-                          )}
-                      m
+                            Number(
+                              item.domesticStartTime.toString().substring(2, 4)
+                            ) <
+                          0
+                            ? Number(
+                                item.domesticArrivalTime
+                                  .toString()
+                                  .substring(2, 4)
+                              ) -
+                              Number(
+                                item.domesticStartTime
+                                  .toString()
+                                  .substring(2, 4)
+                              ) +
+                              60
+                            : Number(
+                                item.domesticArrivalTime
+                                  .toString()
+                                  .substring(2, 4)
+                              ) -
+                              Number(
+                                item.domesticStartTime
+                                  .toString()
+                                  .substring(2, 4)
+                              )}
+                          m
+                        </div>
+                        <div>{item.arrivalcity}</div>
+                      </div>
+                      <div className="grid grid-cols-3 text-base gap-6">
+                        <div>{item.startcityCode}</div>
+                        <div></div>
+                        <div>{item.arrivalcityCode}</div>
+                      </div>
                     </div>
-                    <div>{item.arrivalcity}</div>
                   </div>
-                  <div className="grid grid-cols-3 text-base gap-6">
-                    <div>{item.startcityCode}</div>
-                    <div></div>
-                    <div>{item.arrivalcityCode}</div>
-                  </div>
+                  {index !== domestic.length - 1 ? (
+                    <div className="divider">OR</div>
+                  ) : null}
                 </div>
-              </div>
-              {index !== domestic.length - 1 ? (
-                <div className="divider">OR</div>
-              ) : null}
+              ))}
             </div>
-          ))}
+          ) : (
+            <div>검색 결과가 없습니다.</div>
+          )}
         </div>
       )}
     </div>

@@ -117,6 +117,7 @@ const domesticsearch = (
     .then((response) => {
       setDomestic(response.data.response.body.items.item);
       totalCount(response.data.response.body.totalCount);
+      console.log(response);
     })
     .catch((error) => {
       console.log(error);
