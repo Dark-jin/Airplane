@@ -71,6 +71,9 @@ const Search = () => {
             className="select w-full max-w-xs select-bordered"
             onChange={(e) => setDepart(e.target.value)}
           >
+            <option disabled selected>
+              출발 공항(Depart Airport)
+            </option>
             {startcity.map((item, index) => (
               <option key={index} value={item.eng}>
                 {item.kor}
@@ -83,6 +86,9 @@ const Search = () => {
             className="select w-full max-w-xs select-bordered"
             onChange={(e) => setArrive(e.target.value)}
           >
+            <option disabled selected>
+              도착 공항(Arrive Airport)
+            </option>
             {endcity.map((item, index) => (
               <option key={index} value={item.eng}>
                 {item.kor}
