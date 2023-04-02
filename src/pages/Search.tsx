@@ -79,7 +79,7 @@ const Search = () => {
               <div className="grid h-full card bg-base-300 rounded-box place-items-center">
                 <div className="text-lg font-bold">{item.airlineEnglish}</div>
                 <div className="text-lg font-bold">{item.airlineKorean}</div>
-                <div className="grid grid-rows-2">
+                <div className="grid grid-rows-3">
                   <div className="grid grid-cols-3 mt-4 gap-5 text-2xl font-bold">
                     <div>
                       {item.domesticStartTime.toString().substring(0, 2)} :{" "}
@@ -110,6 +110,11 @@ const Search = () => {
                       m
                     </div>
                     <div>{item.arrivalcity}</div>
+                  </div>
+                  <div className="grid grid-cols-3 text-base gap-6">
+                    <div>{item.startcityCode}</div>
+                    <div></div>
+                    <div>{item.arrivalcityCode}</div>
                   </div>
                 </div>
               </div>
