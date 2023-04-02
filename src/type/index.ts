@@ -56,10 +56,14 @@ type domesticScheduleType = {
   startcity: string; // 출발공항
   startcityCode: string;
 }[];
+type totalcountType = {
+  totalcount: number;
+};
 export type {
   liveListTpye,
   domesticType,
   parkingType,
   parkingcongestionType,
   domesticScheduleType,
+  totalcountType,
 };

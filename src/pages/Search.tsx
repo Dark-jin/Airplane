@@ -6,7 +6,11 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { TextField } from "@mui/material";
 import { useRecoilState } from "recoil";
-import { domesticState, domesticScheduleState } from "../states/atom";
+import {
+  domesticState,
+  domesticScheduleState,
+  totalCount,
+} from "../states/atom";
 import { useNavigate } from "react-router-dom";
 
 const Search = () => {
@@ -16,11 +20,13 @@ const Search = () => {
   const [endcity, setEndcity] = useRecoilState(domesticState);
   const [depart, setDepart] = useState("");
   const [arrive, setArrive] = useState("");
+  const [totalcount, setTotalcount] = useRecoilState(totalCount);
   const [value, setValue] = useState<Dayjs | null>(null);
   let year = Number(value?.year());
   let month = String(Number(value?.month()) + 1);
   let day = String(Number(value?.date()));
   const [check, setCheck] = useState(false);
+  const page = Math.ceil(Number(totalcount) / 10);
 
   if (month !== "10" && month !== "11" && month !== "12") {
     month = "0" + month;
@@ -41,10 +47,12 @@ const Search = () => {
   let date = Number(String(year) + month + day);
 
   const searchbtn = async () => {
-    await domesticsearch(date, setDomestic, depart, arrive);
-    console.log(domestic);
+    await domesticsearch(date, setDomestic, depart, arrive, setTotalcount);
     setCheck(true);
   };
+  // useEffect(() => {
+  //   domesticsearch(date, setDomestic, depart, arrive, page);
+  // }, [page]);
   const homeclick = () => {
     navigate("/");
   };
@@ -105,7 +113,6 @@ const Search = () => {
           </button>
         </div>
       </div>
-
       {check && (
         <div className="mt-4">
           {domestic.map((item, index) => (

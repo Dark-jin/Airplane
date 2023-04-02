@@ -12,7 +12,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
-    "@mui/material": "^5.11.14",
+    "@mui/material": "^5.11.15",
     "@mui/x-date-pickers": "^6.0.3",
     "@types/react-cookies": "^0.1.0",
     "autoprefixer": "^10.4.14",

@@ -5,6 +5,7 @@ import {
   parkingType,
   parkingcongestionType,
   domesticScheduleType,
+  totalcountType,
 } from "../type";
 import { atom } from "recoil";
 
@@ -151,6 +152,12 @@ const domesticScheduleState = atom<domesticScheduleType>({
     },
   ],
 });
+const totalCount = atom<totalcountType>({
+  key: "totalCount",
+  default: {
+    totalcount: 0,
+  },
+});
 export {
   liveState,
   totalliveState,
@@ -158,4 +165,5 @@ export {
   parkingState,
   parkingcongestionState,
   domesticState,
+  totalCount,
 };

@@ -7,6 +7,7 @@ import {
   liveListTpye,
   parkingType,
   parkingcongestionType,
+  totalcountType,
 } from "../type";
 
 const { VITE_APP_AIR_KEY } = import.meta.env;
@@ -99,7 +100,8 @@ const domesticsearch = (
   date: number,
   setDomestic: SetterOrUpdater<domesticScheduleType>,
   startcity: string,
-  endcity: string
+  endcity: string,
+  totalCount: SetterOrUpdater<totalcountType>
 ) => {
   axios
     .get("/FlightScheduleList/getDflightScheduleList", {
@@ -109,6 +111,32 @@ const domesticsearch = (
         schDeptCityCode: startcity,
         schArrvCityCode: endcity,
         pageNo: 1,
+      },
+      headers: headerConfig,
+    })
+    .then((response) => {
+      setDomestic(response.data.response.body.items.item);
+      totalCount(response.data.response.body.totalCount);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+const domesticSearchpage = (
+  date: number,
+  setDomestic: SetterOrUpdater<domesticScheduleType>,
+  startcity: string,
+  endcity: string,
+  page: number
+) => {
+  axios
+    .get("/FlightScheduleList/getDflightScheduleList", {
+      params: {
+        serviceKey: VITE_APP_AIR_KEY + "==",
+        schDate: date,
+        schDeptCityCode: startcity,
+        schArrvCityCode: endcity,
+        pageNo: page,
       },
       headers: headerConfig,
     })
@@ -126,4 +154,5 @@ export {
   liveparking,
   liveparkingcongestion,
   domesticsearch,
+  domesticSearchpage,
 };
