@@ -4,7 +4,7 @@ import dayjs, { Dayjs } from "dayjs";
 import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { DatePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { TextField } from "@mui/material";
+import { Pagination, TextField } from "@mui/material";
 import { useRecoilState } from "recoil";
 import {
   domesticState,
@@ -55,6 +55,9 @@ const Search = () => {
   // }, [page]);
   const homeclick = () => {
     navigate("/");
+  };
+  const pagehandle = async (event: React.ChangeEvent<any>, value: any) => {
+    await domesticsearch(date, setDomestic, depart, arrive, value);
   };
 
   return (
@@ -164,6 +167,7 @@ const Search = () => {
           ))}
         </div>
       )}
+      <Pagination count={page} onChange={pagehandle} />
     </div>
   );
 };

@@ -57,7 +57,7 @@ type domesticScheduleType = {
   startcityCode: string;
 }[];
 type totalcountType = {
-  totalcount: number;
+  totalCount: number;
 };
 export type {
   liveListTpye,

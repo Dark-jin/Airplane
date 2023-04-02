@@ -3,7 +3,6 @@ import React from "react";
 import { SetterOrUpdater } from "recoil";
 import {
   domesticScheduleType,
-  domesticType,
   liveListTpye,
   parkingType,
   parkingcongestionType,
