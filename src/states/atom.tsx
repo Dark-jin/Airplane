@@ -6,6 +6,7 @@ import {
   parkingcongestionType,
   domesticScheduleType,
   totalcountType,
+  onedomesticScheduleType,
 } from "../type";
 import { atom } from "recoil";
 
@@ -158,6 +159,22 @@ const totalCount = atom<totalcountType>({
     totalCount: 1,
   },
 });
+const onedomesticScheduleState = atom<onedomesticScheduleType>({
+  key: "onedomesticScheduleData",
+  default: {
+    airlineEnglish: "",
+    airlineKorean: "",
+    arrivalcity: "",
+    arrivalcityCode: "",
+    domesticArrivalTime: "", // 도착시간
+    domesticEddate: "", // 운항 종료일
+    domesticStartTime: "", // 출발시간
+    domesticStdate: "", // 운항 시작일
+    flightPurpose: "",
+    startcity: "", // 출발공항
+    startcityCode: "",
+  },
+});
 export {
   liveState,
   totalliveState,
@@ -166,4 +183,5 @@ export {
   parkingcongestionState,
   domesticState,
   totalCount,
+  onedomesticScheduleState,
 };

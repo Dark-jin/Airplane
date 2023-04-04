@@ -4,6 +4,7 @@ import { SetterOrUpdater } from "recoil";
 import {
   domesticScheduleType,
   liveListTpye,
+  onedomesticScheduleType,
   parkingType,
   parkingcongestionType,
   totalcountType,
@@ -101,7 +102,8 @@ const domesticsearch = (
   startcity: string,
   endcity: string,
   totalCount: SetterOrUpdater<totalcountType>,
-  pagenumber: number
+  pagenumber: number,
+  setOnedomestic: SetterOrUpdater<onedomesticScheduleType>
 ) => {
   axios
     .get("/FlightScheduleList/getDflightScheduleList", {
@@ -117,6 +119,9 @@ const domesticsearch = (
     .then((response) => {
       setDomestic(response.data.response.body.items.item);
       totalCount(response.data.response.body.totalCount);
+      if (response.data.response.body.totalCount == 1) {
+        setOnedomestic(response.data.response.body.items.item);
+      }
     })
     .catch((error) => {
       console.log(error);

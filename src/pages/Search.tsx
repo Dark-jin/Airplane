@@ -1,4 +1,4 @@
-import { domesticSearchpage, domesticsearch } from "../apis/airplane";
+import { domesticsearch } from "../apis/airplane";
 import React, { useEffect, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
@@ -10,10 +10,14 @@ import {
   domesticState,
   domesticScheduleState,
   totalCount,
+  onedomesticScheduleState,
 } from "../states/atom";
 import { useNavigate } from "react-router-dom";
+import { domesticScheduleType } from "../type";
+import axios from "axios";
 
 const Search = () => {
+  const { VITE_APP_AIR_KEY } = import.meta.env;
   const navigate = useNavigate();
   const [domestic, setDomestic] = useRecoilState(domesticScheduleState);
   const [startcity, setCity] = useRecoilState(domesticState);
@@ -28,6 +32,9 @@ const Search = () => {
   const [check, setCheck] = useState(false);
   const page = Math.ceil(Number(totalcount) / 10);
   const [pagenumber, setPagenumber] = useState(1);
+  const [onedomestic, setOnedomestic] = useRecoilState(
+    onedomesticScheduleState
+  );
 
   if (month !== "10" && month !== "11" && month !== "12") {
     month = "0" + month;
@@ -54,7 +61,8 @@ const Search = () => {
       depart,
       arrive,
       setTotalcount,
-      pagenumber
+      pagenumber,
+      setOnedomestic
     );
     setCheck(true);
   };
@@ -134,113 +142,202 @@ const Search = () => {
       {check && (
         <div className="mt-4">
           {Number(totalcount) == 1 ? (
-            <div>테스트</div>
+            <div className="grid h-full card bg-base-300 rounded-box place-items-center">
+              <div className="text-lg font-bold">
+                {onedomestic.airlineEnglish}
+              </div>
+              <div className="text-lg font-bold">
+                {onedomestic.airlineKorean}
+              </div>
+              <div className="grid grid-rows-3">
+                <div className="grid grid-cols-3 mt-4 gap-5 text-2xl font-bold">
+                  <div>
+                    {onedomestic.domesticStartTime.toString().substring(0, 2)} :{" "}
+                    {onedomestic.domesticStartTime.toString().substring(2, 4)}
+                  </div>
+                  <div>=====✈️=====</div>
+                  <div>
+                    {onedomestic.domesticArrivalTime.toString().substring(0, 2)}{" "}
+                    :{" "}
+                    {onedomestic.domesticArrivalTime.toString().substring(2, 4)}
+                  </div>
+                </div>
+                <div className="grid grid-cols-3 mt-4 text-xl font-bold gap-6">
+                  <div>{onedomestic.startcity}</div>
+                  <div>
+                    {Number(
+                      onedomestic.domesticArrivalTime.toString().substring(2, 4)
+                    ) -
+                      Number(
+                        onedomestic.domesticStartTime.toString().substring(2, 4)
+                      ) <
+                    0
+                      ? Number(
+                          onedomestic.domesticArrivalTime
+                            .toString()
+                            .substring(0, 2)
+                        ) -
+                        Number(
+                          onedomestic.domesticStartTime
+                            .toString()
+                            .substring(0, 2)
+                        ) -
+                        1
+                      : Number(
+                          onedomestic.domesticArrivalTime
+                            .toString()
+                            .substring(0, 2)
+                        ) -
+                        Number(
+                          onedomestic.domesticStartTime
+                            .toString()
+                            .substring(0, 2)
+                        )}
+                    h{" "}
+                    {Number(
+                      onedomestic.domesticArrivalTime.toString().substring(2, 4)
+                    ) -
+                      Number(
+                        onedomestic.domesticStartTime.toString().substring(2, 4)
+                      ) <
+                    0
+                      ? Number(
+                          onedomestic.domesticArrivalTime
+                            .toString()
+                            .substring(2, 4)
+                        ) -
+                        Number(
+                          onedomestic.domesticStartTime
+                            .toString()
+                            .substring(2, 4)
+                        ) +
+                        60
+                      : Number(
+                          onedomestic.domesticArrivalTime
+                            .toString()
+                            .substring(2, 4)
+                        ) -
+                        Number(
+                          onedomestic.domesticStartTime
+                            .toString()
+                            .substring(2, 4)
+                        )}
+                    m
+                  </div>
+                  <div>{onedomestic.arrivalcity}</div>
+                </div>
+                <div className="grid grid-cols-3 text-base gap-6">
+                  <div>{onedomestic.startcityCode}</div>
+                  <div></div>
+                  <div>{onedomestic.arrivalcityCode}</div>
+                </div>
+              </div>
+            </div>
+          ) : Number(totalcount) > 1 ? (
+            <div>
+              {domestic.map((item, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col w-full border-opacity-50"
+                >
+                  <div className="grid h-full card bg-base-300 rounded-box place-items-center">
+                    <div className="text-lg font-bold">
+                      {item.airlineEnglish}
+                    </div>
+                    <div className="text-lg font-bold">
+                      {item.airlineKorean}
+                    </div>
+                    <div className="grid grid-rows-3">
+                      <div className="grid grid-cols-3 mt-4 gap-5 text-2xl font-bold">
+                        <div>
+                          {item.domesticStartTime.toString().substring(0, 2)} :{" "}
+                          {item.domesticStartTime.toString().substring(2, 4)}
+                        </div>
+                        <div>=====✈️=====</div>
+                        <div>
+                          {item.domesticArrivalTime.toString().substring(0, 2)}{" "}
+                          :{" "}
+                          {item.domesticArrivalTime.toString().substring(2, 4)}
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-3 mt-4 text-xl font-bold gap-6">
+                        <div>{item.startcity}</div>
+                        <div>
+                          {Number(
+                            item.domesticArrivalTime.toString().substring(2, 4)
+                          ) -
+                            Number(
+                              item.domesticStartTime.toString().substring(2, 4)
+                            ) <
+                          0
+                            ? Number(
+                                item.domesticArrivalTime
+                                  .toString()
+                                  .substring(0, 2)
+                              ) -
+                              Number(
+                                item.domesticStartTime
+                                  .toString()
+                                  .substring(0, 2)
+                              ) -
+                              1
+                            : Number(
+                                item.domesticArrivalTime
+                                  .toString()
+                                  .substring(0, 2)
+                              ) -
+                              Number(
+                                item.domesticStartTime
+                                  .toString()
+                                  .substring(0, 2)
+                              )}
+                          h{" "}
+                          {Number(
+                            item.domesticArrivalTime.toString().substring(2, 4)
+                          ) -
+                            Number(
+                              item.domesticStartTime.toString().substring(2, 4)
+                            ) <
+                          0
+                            ? Number(
+                                item.domesticArrivalTime
+                                  .toString()
+                                  .substring(2, 4)
+                              ) -
+                              Number(
+                                item.domesticStartTime
+                                  .toString()
+                                  .substring(2, 4)
+                              ) +
+                              60
+                            : Number(
+                                item.domesticArrivalTime
+                                  .toString()
+                                  .substring(2, 4)
+                              ) -
+                              Number(
+                                item.domesticStartTime
+                                  .toString()
+                                  .substring(2, 4)
+                              )}
+                          m
+                        </div>
+                        <div>{item.arrivalcity}</div>
+                      </div>
+                      <div className="grid grid-cols-3 text-base gap-6">
+                        <div>{item.startcityCode}</div>
+                        <div></div>
+                        <div>{item.arrivalcityCode}</div>
+                      </div>
+                    </div>
+                  </div>
+                  {index !== domestic.length - 1 ? (
+                    <div className="divider">OR</div>
+                  ) : null}
+                </div>
+              ))}
+            </div>
           ) : (
-            // : Number(totalcount) > 1 ? (
-            //   <div>
-            //     {domestic.map((item, index) => (
-            //       <div
-            //         key={index}
-            //         className="flex flex-col w-full border-opacity-50"
-            //       >
-            //         <div className="grid h-full card bg-base-300 rounded-box place-items-center">
-            //           <div className="text-lg font-bold">
-            //             {item.airlineEnglish}
-            //           </div>
-            //           <div className="text-lg font-bold">
-            //             {item.airlineKorean}
-            //           </div>
-            //           <div className="grid grid-rows-3">
-            //             <div className="grid grid-cols-3 mt-4 gap-5 text-2xl font-bold">
-            //               <div>
-            //                 {item.domesticStartTime.toString().substring(0, 2)} :{" "}
-            //                 {item.domesticStartTime.toString().substring(2, 4)}
-            //               </div>
-            //               <div>=====✈️=====</div>
-            //               <div>
-            //                 {item.domesticArrivalTime.toString().substring(0, 2)}{" "}
-            //                 :{" "}
-            //                 {item.domesticArrivalTime.toString().substring(2, 4)}
-            //               </div>
-            //             </div>
-            //             <div className="grid grid-cols-3 mt-4 text-xl font-bold gap-6">
-            //               <div>{item.startcity}</div>
-            //               <div>
-            //                 {Number(
-            //                   item.domesticArrivalTime.toString().substring(2, 4)
-            //                 ) -
-            //                   Number(
-            //                     item.domesticStartTime.toString().substring(2, 4)
-            //                   ) <
-            //                 0
-            //                   ? Number(
-            //                       item.domesticArrivalTime
-            //                         .toString()
-            //                         .substring(0, 2)
-            //                     ) -
-            //                     Number(
-            //                       item.domesticStartTime
-            //                         .toString()
-            //                         .substring(0, 2)
-            //                     ) -
-            //                     1
-            //                   : Number(
-            //                       item.domesticArrivalTime
-            //                         .toString()
-            //                         .substring(0, 2)
-            //                     ) -
-            //                     Number(
-            //                       item.domesticStartTime
-            //                         .toString()
-            //                         .substring(0, 2)
-            //                     )}
-            //                 h{" "}
-            //                 {Number(
-            //                   item.domesticArrivalTime.toString().substring(2, 4)
-            //                 ) -
-            //                   Number(
-            //                     item.domesticStartTime.toString().substring(2, 4)
-            //                   ) <
-            //                 0
-            //                   ? Number(
-            //                       item.domesticArrivalTime
-            //                         .toString()
-            //                         .substring(2, 4)
-            //                     ) -
-            //                     Number(
-            //                       item.domesticStartTime
-            //                         .toString()
-            //                         .substring(2, 4)
-            //                     ) +
-            //                     60
-            //                   : Number(
-            //                       item.domesticArrivalTime
-            //                         .toString()
-            //                         .substring(2, 4)
-            //                     ) -
-            //                     Number(
-            //                       item.domesticStartTime
-            //                         .toString()
-            //                         .substring(2, 4)
-            //                     )}
-            //                 m
-            //               </div>
-            //               <div>{item.arrivalcity}</div>
-            //             </div>
-            //             <div className="grid grid-cols-3 text-base gap-6">
-            //               <div>{item.startcityCode}</div>
-            //               <div></div>
-            //               <div>{item.arrivalcityCode}</div>
-            //             </div>
-            //           </div>
-            //         </div>
-            //         {index !== domestic.length - 1 ? (
-            //           <div className="divider">OR</div>
-            //         ) : null}
-            //       </div>
-            //     ))}
-            //   </div>
-            // )
             <div>검색 결과가 없습니다.</div>
           )}
         </div>
