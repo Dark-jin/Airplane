@@ -12,6 +12,7 @@ import {
   onedomesticScheduleState,
 } from "../states/atom";
 import { useNavigate } from "react-router-dom";
+import Loading from "../components/Loading";
 
 const Search = () => {
   const navigate = useNavigate();
@@ -82,7 +83,7 @@ const Search = () => {
     );
   }, [pagenumber]);
 
-  return !loading ? (
+  return (
     <div>
       <div className="text-start">
         <button className="btn btn-ghost text-xl" onClick={homeclick}>
@@ -351,8 +352,6 @@ const Search = () => {
         </div>
       )}
     </div>
-  ) : (
-    <></>
   );
 };
 export default Search;

@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { internationalairport } from "../apis/airplane";
 import { useRecoilState } from "recoil";
 import { internationalState } from "../states/atom";
-import { internationalType } from "../type";
 import { Pagination } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import Loading from "../components/Loading";
 
 const International = () => {
   const navigate = useNavigate();
@@ -58,7 +58,7 @@ const International = () => {
       </div>
     </div>
   ) : (
-    <></>
+    <Loading />
   );
 };
 export default International;
