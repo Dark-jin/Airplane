@@ -1,8 +1,7 @@
-import { domesticsearch } from "../apis/airplane";
+import { domesticsearch, pagedomesticsearch } from "../apis/airplane";
 import React, { useEffect, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { DatePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Pagination, TextField } from "@mui/material";
 import { useRecoilState } from "recoil";
@@ -13,11 +12,8 @@ import {
   onedomesticScheduleState,
 } from "../states/atom";
 import { useNavigate } from "react-router-dom";
-import { domesticScheduleType } from "../type";
-import axios from "axios";
 
 const Search = () => {
-  const { VITE_APP_AIR_KEY } = import.meta.env;
   const navigate = useNavigate();
   const [domestic, setDomestic] = useRecoilState(domesticScheduleState);
   const [startcity, setCity] = useRecoilState(domesticState);
@@ -54,8 +50,27 @@ const Search = () => {
   }
   let date = Number(String(year) + month + day);
 
-  const searchbtn = async () => {
-    await domesticsearch(
+  const searchbtn = () => {
+    domesticsearch(
+      date,
+      setDomestic,
+      depart,
+      arrive,
+      setTotalcount,
+      1,
+      setOnedomestic
+    );
+    setCheck(true);
+  };
+
+  const homeclick = () => {
+    navigate("/");
+  };
+  const pagehandle = (event: React.ChangeEvent<unknown>, value: any) => {
+    setPagenumber(value);
+  };
+  useEffect(() => {
+    pagedomesticsearch(
       date,
       setDomestic,
       depart,
@@ -64,16 +79,7 @@ const Search = () => {
       pagenumber,
       setOnedomestic
     );
-    setCheck(true);
-  };
-  console.log(domestic);
-
-  const homeclick = () => {
-    navigate("/");
-  };
-  const pagehandle = (event: React.ChangeEvent<unknown>, value: any) => {
-    setPagenumber(value);
-  };
+  }, [pagenumber]);
 
   return (
     <div>
@@ -134,6 +140,7 @@ const Search = () => {
       {check && (
         <Pagination
           count={page}
+          defaultPage={1}
           page={pagenumber}
           onChange={pagehandle}
           className="mt-4"
@@ -141,7 +148,7 @@ const Search = () => {
       )}
       {check && (
         <div className="mt-4">
-          {Number(totalcount) == 1 ? (
+          {Number(totalcount) == 1 ? ( // 데이터가 한개일때
             <div className="grid h-full card bg-base-300 rounded-box place-items-center">
               <div className="text-lg font-bold">
                 {onedomestic.airlineEnglish}
@@ -233,7 +240,7 @@ const Search = () => {
                 </div>
               </div>
             </div>
-          ) : Number(totalcount) > 1 ? (
+          ) : Number(totalcount) > 1 ? ( // 데이터가 여러개일때
             <div>
               {domestic.map((item, index) => (
                 <div

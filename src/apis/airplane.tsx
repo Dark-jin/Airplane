@@ -127,6 +127,37 @@ const domesticsearch = (
       console.log(error);
     });
 };
+const pagedomesticsearch = (
+  date: number,
+  setDomestic: SetterOrUpdater<domesticScheduleType>,
+  startcity: string,
+  endcity: string,
+  totalCount: SetterOrUpdater<totalcountType>,
+  pagenumber: number,
+  setOnedomestic: SetterOrUpdater<onedomesticScheduleType>
+) => {
+  axios
+    .get("/FlightScheduleList/getDflightScheduleList", {
+      params: {
+        serviceKey: VITE_APP_AIR_KEY + "==",
+        schDate: date,
+        schDeptCityCode: startcity,
+        schArrvCityCode: endcity,
+        pageNo: pagenumber,
+      },
+      headers: headerConfig,
+    })
+    .then((response) => {
+      setDomestic(response.data.response.body.items.item);
+      totalCount(response.data.response.body.totalCount);
+      if (response.data.response.body.totalCount == 1) {
+        setOnedomestic(response.data.response.body.items.item);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 
 export {
   totallive,
@@ -134,4 +165,5 @@ export {
   liveparking,
   liveparkingcongestion,
   domesticsearch,
+  pagedomesticsearch,
 };
