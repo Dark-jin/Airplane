@@ -21,6 +21,9 @@ const Main = () => {
   const searchbtn = () => {
     navigate("/search");
   };
+  const internationalbtn = () => {
+    navigate("/international");
+  }
 
   useEffect(() => {
     totallive(setTotal);
@@ -56,6 +59,12 @@ const Main = () => {
             onClick={parkingbtn}
           >
             실시간 주차장
+          </button>
+          <button
+            className="btn btn-ghost text-base font-bold"
+            onClick={internationalbtn}
+          >
+            해외 항공정보
           </button>
         </div>
       </div>

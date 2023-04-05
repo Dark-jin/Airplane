@@ -7,6 +7,7 @@ import {
   domesticScheduleType,
   totalcountType,
   onedomesticScheduleType,
+  internationalType,
 } from "../type";
 import { atom } from "recoil";
 
@@ -175,6 +176,16 @@ const onedomesticScheduleState = atom<onedomesticScheduleType>({
     startcityCode: "",
   },
 });
+const internationalState = atom<internationalType>({
+  key: "internationalData",
+  default: [
+    {
+      cityCode: "",
+      cityEng: "",
+      cityKor: "",
+    },
+  ],
+});
 export {
   liveState,
   totalliveState,
@@ -184,4 +195,5 @@ export {
   domesticState,
   totalCount,
   onedomesticScheduleState,
+  internationalState,
 };

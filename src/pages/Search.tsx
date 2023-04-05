@@ -31,6 +31,7 @@ const Search = () => {
   const [onedomestic, setOnedomestic] = useRecoilState(
     onedomesticScheduleState
   );
+  const [loading, setLoading] = useState(false);
 
   if (month !== "10" && month !== "11" && month !== "12") {
     month = "0" + month;
@@ -76,11 +77,12 @@ const Search = () => {
       arrive,
       setTotalcount,
       pagenumber,
-      setOnedomestic
+      setOnedomestic,
+      setLoading
     );
   }, [pagenumber]);
 
-  return (
+  return !loading ? (
     <div>
       <div className="text-start">
         <button className="btn btn-ghost text-xl" onClick={homeclick}>
@@ -349,6 +351,8 @@ const Search = () => {
         </div>
       )}
     </div>
+  ) : (
+    <></>
   );
 };
 export default Search;

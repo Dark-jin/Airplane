@@ -5,6 +5,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Main } from "./pages";
 import Airportparking from "./pages/Airportparking";
 import Search from "./pages/Search";
+import International from "./pages/International";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "/search",
     element: <Search />,
+  },
+  {
+    path: "/international",
+    element: <International />,
   },
 ]);
 

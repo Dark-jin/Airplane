@@ -72,6 +72,11 @@ type onedomesticScheduleType = {
   startcity: string; // 출발공항
   startcityCode: string;
 };
+type internationalType = {
+  cityCode: string;
+  cityEng: string;
+  cityKor: string;
+}[];
 export type {
   liveListTpye,
   domesticType,
@@ -80,4 +85,5 @@ export type {
   domesticScheduleType,
   totalcountType,
   onedomesticScheduleType,
+  internationalType,
 };

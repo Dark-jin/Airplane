@@ -3,6 +3,7 @@ import React from "react";
 import { SetterOrUpdater } from "recoil";
 import {
   domesticScheduleType,
+  internationalType,
   liveListTpye,
   onedomesticScheduleType,
   parkingType,
@@ -136,7 +137,8 @@ const pagedomesticsearch = (
   endcity: string,
   totalCount: SetterOrUpdater<totalcountType>,
   pagenumber: number,
-  setOnedomestic: SetterOrUpdater<onedomesticScheduleType>
+  setOnedomestic: SetterOrUpdater<onedomesticScheduleType>,
+  setLoading?: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   axios
     .get("/FlightScheduleList/getDflightScheduleList", {
@@ -156,6 +158,30 @@ const pagedomesticsearch = (
       if (response.data.response.body.totalCount == 1) {
         setOnedomestic(response.data.response.body.items.item);
       }
+      setLoading && setLoading(false);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+const internationalairport = (
+  setIternational: SetterOrUpdater<internationalType>,
+  pagenumber: number,
+  setLoading?: React.Dispatch<React.SetStateAction<boolean>>
+) => {
+  axios
+    .get("/AirportCodeList/getAirportCodeList", {
+      params: {
+        serviceKey: VITE_APP_AIR_KEY + "==",
+        pageNo: pagenumber,
+        numOfRows: 30,
+      },
+      headers: headerConfig,
+    })
+    .then((response) => {
+      //console.log(response.data.response.body.items.item);
+      setIternational(response.data.response.body.items.item);
+      setLoading && setLoading(false);
     })
     .catch((error) => {
       console.log(error);
@@ -169,4 +195,5 @@ export {
   liveparkingcongestion,
   domesticsearch,
   pagedomesticsearch,
+  internationalairport,
 };
