@@ -50,8 +50,8 @@ const Search = () => {
   }
   let date = Number(String(year) + month + day);
 
-  const searchbtn = () => {
-    domesticsearch(
+  const searchbtn = async () => {
+    await domesticsearch(
       date,
       setDomestic,
       depart,
@@ -62,7 +62,6 @@ const Search = () => {
     );
     setCheck(true);
   };
-
   const homeclick = () => {
     navigate("/");
   };

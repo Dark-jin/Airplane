@@ -112,6 +112,7 @@ const domesticsearch = (
         schDate: date,
         schDeptCityCode: startcity,
         schArrvCityCode: endcity,
+        numOfRows: 7,
         pageNo: pagenumber,
       },
       headers: headerConfig,
@@ -119,6 +120,7 @@ const domesticsearch = (
     .then((response) => {
       setDomestic(response.data.response.body.items.item);
       totalCount(response.data.response.body.totalCount);
+      console.log(response.data.response.body.totalCount);
       if (response.data.response.body.totalCount == 1) {
         setOnedomestic(response.data.response.body.items.item);
       }
@@ -143,6 +145,7 @@ const pagedomesticsearch = (
         schDate: date,
         schDeptCityCode: startcity,
         schArrvCityCode: endcity,
+        numOfRows: 7,
         pageNo: pagenumber,
       },
       headers: headerConfig,
