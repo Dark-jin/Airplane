@@ -32,7 +32,7 @@ const Search = () => {
   const [onedomestic, setOnedomestic] = useRecoilState(
     onedomesticScheduleState
   );
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   if (month !== "10" && month !== "11" && month !== "12") {
     month = "0" + month;
@@ -81,6 +81,7 @@ const Search = () => {
       setOnedomestic,
       setLoading
     );
+    console.log(loading);
   }, [pagenumber]);
 
   return (
@@ -150,7 +151,7 @@ const Search = () => {
       )}
       {check && (
         <div className="mt-4">
-          {Number(totalcount) == 1 ? ( // 데이터가 한개일때
+          {Number(totalcount) == 1 && !loading ? ( // 데이터가 한개일때
             <div className="grid h-full card bg-base-300 rounded-box place-items-center">
               <div className="text-lg font-bold">
                 {onedomestic.airlineEnglish}
@@ -242,7 +243,7 @@ const Search = () => {
                 </div>
               </div>
             </div>
-          ) : Number(totalcount) > 1 ? ( // 데이터가 여러개일때
+          ) : Number(totalcount) > 1 && !loading ? ( // 데이터가 여러개일때
             <div>
               {domestic.map((item, index) => (
                 <div
@@ -347,7 +348,10 @@ const Search = () => {
               ))}
             </div>
           ) : (
-            <div>검색 결과가 없습니다.</div>
+            <div>
+              <h1>검색 결과가 없습니다.</h1>
+              <Loading />
+            </div>
           )}
         </div>
       )}

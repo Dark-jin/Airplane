@@ -179,7 +179,6 @@ const internationalairport = (
       headers: headerConfig,
     })
     .then((response) => {
-      //console.log(response.data.response.body.items.item);
       setIternational(response.data.response.body.items.item);
       setLoading && setLoading(false);
     })

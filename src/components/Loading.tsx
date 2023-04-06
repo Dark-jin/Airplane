@@ -7,11 +7,13 @@ const Loading = () => {
       options={{
         loop: true,
         autoplay: true,
-        animationData: Lottie,
+        animationData: animationloading,
         rendererSettings: {
           preserveAspectRatio: "xMidYMid slice",
         },
       }}
+      width={300}
+      height={300}
       isClickToPauseDisabled
     />
   );

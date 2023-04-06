@@ -9,7 +9,7 @@ import Loading from "../components/Loading";
 const International = () => {
   const navigate = useNavigate();
   const [international, setInternational] = useRecoilState(internationalState);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [pagenumber, setPagenumber] = useState(1);
   let totalpage = Math.ceil(1376 / 30);
 
@@ -24,7 +24,7 @@ const International = () => {
     navigate("/");
   };
 
-  return !loading ? (
+  return (
     <div>
       <div className="text-start">
         <button className="btn btn-ghost text-xl" onClick={homeclick}>
@@ -32,21 +32,25 @@ const International = () => {
         </button>
       </div>
       <div className="font-bold text-4xl text-center">International</div>
-      <div>
-        {international.map((item, index) => (
-          <div className="grid grid-cols-3 card w-full bg-blue-500 shadow-lg mt-4 text-white">
-            <div key={index} className="font-bold text-lg">
-              <div>{item.cityCode}</div>
+      {!loading ? (
+        <div>
+          {international.map((item, index) => (
+            <div className="grid grid-cols-3 card w-full bg-blue-500 shadow-lg mt-4 text-white">
+              <div key={index} className="font-bold text-lg">
+                <div>{item.cityCode}</div>
+              </div>
+              <div key={index} className="font-bold text-lg">
+                <div>{item.cityEng}</div>
+              </div>
+              <div key={index} className="font-bold text-lg">
+                <div>{item.cityKor}</div>
+              </div>
             </div>
-            <div key={index} className="font-bold text-lg">
-              <div>{item.cityEng}</div>
-            </div>
-            <div key={index} className="font-bold text-lg">
-              <div>{item.cityKor}</div>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <Loading />
+      )}
       <div>
         <Pagination
           count={totalpage}
@@ -57,8 +61,6 @@ const International = () => {
         />
       </div>
     </div>
-  ) : (
-    <Loading />
   );
 };
 export default International;
