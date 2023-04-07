@@ -68,7 +68,7 @@ const Search = () => {
     navigate("/");
   };
   const internationalbtn = () => {
-    navigate("/international");
+    navigate("/airportInfo");
   };
   const pagehandle = (event: React.ChangeEvent<unknown>, value: any) => {
     setPagenumber(value);

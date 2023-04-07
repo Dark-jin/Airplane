@@ -9,6 +9,8 @@ import {
   parkingType,
   parkingcongestionType,
   totalcountType,
+  internationalScheduleType,
+  oneinternationalScheduleType,
 } from "../type";
 
 const { VITE_APP_AIR_KEY } = import.meta.env;
@@ -164,7 +166,7 @@ const pagedomesticsearch = (
       console.log(error);
     });
 };
-const internationalairport = (
+const airportinfoAPI = (
   setAirportinfo: SetterOrUpdater<airportinfoType>,
   pagenumber: number,
   setLoading?: React.Dispatch<React.SetStateAction<boolean>>
@@ -186,6 +188,38 @@ const internationalairport = (
       console.log(error);
     });
 };
+const internationalsearch = (
+  date: number,
+  setInternational: SetterOrUpdater<internationalScheduleType>,
+  startcity: string,
+  endcity: string,
+  totalCount: SetterOrUpdater<totalcountType>,
+  pagenumber: number,
+  setOneinternational: SetterOrUpdater<oneinternationalScheduleType>
+) => {
+  axios
+    .get("/FlightScheduleList/getIflightScheduleList", {
+      params: {
+        serviceKey: VITE_APP_AIR_KEY + "==",
+        schDate: date,
+        schDeptCityCode: startcity,
+        schArrvCityCode: endcity,
+        numOfRows: 7,
+        pageNo: pagenumber,
+      },
+      headers: headerConfig,
+    })
+    .then((response) => {
+      setInternational(response.data.response.body.items.item);
+      totalCount(response.data.response.body.totalCount);
+      if (response.data.response.body.totalCount == 1) {
+        setOneinternational(response.data.response.body.items.item);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 
 export {
   totallive,
@@ -194,5 +228,6 @@ export {
   liveparkingcongestion,
   domesticsearch,
   pagedomesticsearch,
-  internationalairport,
+  airportinfoAPI,
+  internationalsearch,
 };

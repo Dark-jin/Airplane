@@ -8,6 +8,8 @@ import {
   totalcountType,
   onedomesticScheduleType,
   airportinfoType,
+  internationalScheduleType,
+  oneinternationalScheduleType,
 } from "../type";
 import { atom } from "recoil";
 
@@ -186,6 +188,36 @@ const airportinfoState = atom<airportinfoType>({
     },
   ],
 });
+const internationalScheduleState = atom<internationalScheduleType>({
+  key: "internationalScheduleData",
+  default: [
+    {
+      airlineEnglish: "",
+      airlineKorean: "",
+      airport: "",
+      airportcode: "",
+      city: "",
+      citycode: "",
+      internationalloType: "",
+      internationalNum: "",
+      internationalTime: 0,
+    },
+  ],
+});
+const oneinternationalScheduleState = atom<oneinternationalScheduleType>({
+  key: "oneinternationalScheduleData",
+  default: {
+    airlineEnglish: "",
+    airlineKorean: "",
+    airport: "",
+    airportcode: "",
+    city: "",
+    citycode: "",
+    internationalloType: "",
+    internationalNum: "",
+    internationalTime: 0,
+  },
+});
 export {
   liveState,
   totalliveState,
@@ -196,4 +228,6 @@ export {
   totalCount,
   onedomesticScheduleState,
   airportinfoState,
+  internationalScheduleState,
+  oneinternationalScheduleState,
 };

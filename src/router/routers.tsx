@@ -1,6 +1,6 @@
 import { Main } from "../pages";
 import Airportparking from "../pages/Airportparking";
-import International from "../pages/International";
+import AirportInfo from "../pages/AirportInfo";
 import Search from "../pages/Search";
 const Router = [
   {
@@ -19,9 +19,9 @@ const Router = [
     component: <Search />,
   },
   {
-    title: "International Airport",
-    url: "/international",
-    component: <International />,
+    title: "AirportInfo",
+    url: "/airportInfo",
+    component: <AirportInfo />,
   },
 ];
 export default Router;

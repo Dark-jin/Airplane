@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { internationalairport } from "../apis/airplane";
+import { airportinfoAPI } from "../apis/airplane";
 import { useRecoilState } from "recoil";
 import { airportinfoState } from "../states/atom";
 import { Pagination } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
 
-const International = () => {
+const AirportInfo = () => {
   const navigate = useNavigate();
   const [airportinfo, setAirportinfo] = useRecoilState(airportinfoState);
   const [loading, setLoading] = useState(true);
@@ -14,7 +14,7 @@ const International = () => {
   let totalpage = Math.ceil(1376 / 30);
 
   useEffect(() => {
-    internationalairport(setAirportinfo, pagenumber, setLoading);
+    airportinfoAPI(setAirportinfo, pagenumber, setLoading);
   }, [pagenumber]);
 
   const pagehandle = (e: React.ChangeEvent<unknown>, value: number) => {
@@ -63,4 +63,4 @@ const International = () => {
     </div>
   );
 };
-export default International;
+export default AirportInfo;
