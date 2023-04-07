@@ -23,15 +23,15 @@ const Search = () => {
   const [arrive, setArrive] = useState("");
   const [totalcount, setTotalcount] = useRecoilState(totalCount);
   const [value, setValue] = useState<Dayjs | null>(null);
-  let year = Number(value?.year());
-  let month = String(Number(value?.month()) + 1);
-  let day = String(Number(value?.date()));
   const [check, setCheck] = useState(false);
-  const page = Math.ceil(Number(totalcount) / 10);
   const [pagenumber, setPagenumber] = useState(1);
   const [onedomestic, setOnedomestic] = useRecoilState(
     onedomesticScheduleState
   );
+  const page = Math.ceil(Number(totalcount) / 10);
+  let year = Number(value?.year());
+  let month = String(Number(value?.month()) + 1);
+  let day = String(Number(value?.date()));
   const [loading, setLoading] = useState(true);
 
   if (month !== "10" && month !== "11" && month !== "12") {
@@ -67,6 +67,9 @@ const Search = () => {
   const homeclick = () => {
     navigate("/");
   };
+  const internationalbtn = () => {
+    navigate("/international");
+  };
   const pagehandle = (event: React.ChangeEvent<unknown>, value: any) => {
     setPagenumber(value);
   };
@@ -86,12 +89,23 @@ const Search = () => {
 
   return (
     <div>
-      <div className="text-start">
-        <button className="btn btn-ghost text-xl" onClick={homeclick}>
-          HOME
-        </button>
+      <div className="grid grid-cols-2">
+        <div className="text-start">
+          <button className="btn btn-ghost text-xl" onClick={homeclick}>
+            HOME
+          </button>
+        </div>
+        <div className="text-end">
+          <button
+            className="btn btn-ghost text-lg font-bold"
+            onClick={internationalbtn}
+          >
+            해외 항공정보
+          </button>
+        </div>
       </div>
       <h1>Search</h1>
+
       <div className="grid grid-cols-4 gap-3">
         <div>
           <LocalizationProvider dateAdapter={AdapterDayjs}>

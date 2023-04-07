@@ -20,15 +20,15 @@ const International = () => {
   const pagehandle = (e: React.ChangeEvent<unknown>, value: number) => {
     setPagenumber(value);
   };
-  const homeclick = () => {
-    navigate("/");
+  const searchbtn = () => {
+    navigate("/search");
   };
 
   return (
     <div>
       <div className="text-start">
-        <button className="btn btn-ghost text-xl" onClick={homeclick}>
-          HOME
+        <button className="btn btn-ghost text-xl" onClick={searchbtn}>
+          Search
         </button>
       </div>
       <div className="font-bold text-4xl text-center">International</div>

@@ -21,9 +21,9 @@ const Main = () => {
   const searchbtn = () => {
     navigate("/search");
   };
-  const internationalbtn = () => {
-    navigate("/international");
-  }
+  const homebtn = () => {
+    navigate("/");
+  };
 
   useEffect(() => {
     totallive(setTotal);
@@ -32,8 +32,8 @@ const Main = () => {
 
   return (
     <>
-      <h1>AIR AIR AIR</h1>
-      <h2>PLANE</h2>
+      <h1 onClick={homebtn}>AIR AIR AIR</h1>
+      <h2 onClick={homebtn}>PLANE</h2>
       <div className="grid grid-cols-3">
         <div>
           <ul className="menu menu-vertical lg:menu-horizontal bg-base-100 rounded-box p-0 font-bold">
@@ -60,18 +60,12 @@ const Main = () => {
           >
             실시간 주차장
           </button>
-          <button
-            className="btn btn-ghost text-base font-bold"
-            onClick={internationalbtn}
-          >
-            해외 항공정보
-          </button>
         </div>
       </div>
       {livestate.map((item, index) => (
         <div className="bg-slate-200 rounded-xl" key={index}>
           <div
-            className="card card-side shadow-xl mt-4 rounded-xl bg-sky-300 ml-12"
+            className="card card-side shadow-xl mt-4 rounded-xl bg-sky-400 ml-12"
             key={index}
           >
             <div className="card-body">
@@ -104,7 +98,11 @@ const Main = () => {
                     ? "International Flight"
                     : "No Data"}
                 </div>
-                <div className="text-xl font-semibold">GATE : {item.gate}</div>
+                {item.gate !== null ? (
+                  <div className="text-xl font-semibold">
+                    GATE : {item.gate}
+                  </div>
+                ) : null}
                 <div></div>
                 <div>{item.line}</div>
                 <div></div>
