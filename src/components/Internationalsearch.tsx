@@ -82,7 +82,7 @@ const Internationalsearch = () => {
         <div>
           <input
             type="text"
-            placeholder="출발 도시"
+            placeholder="출발 도시(코드)"
             className="input input-bordered max-w-xs"
             onChange={(e) => setDepart(e.target.value)}
           />
@@ -90,7 +90,7 @@ const Internationalsearch = () => {
         <div>
           <input
             type="text"
-            placeholder="도착 도시"
+            placeholder="도착 도시(코드)"
             className="input input-bordered max-w-xs"
             onChange={(e) => setArrive(e.target.value)}
           />
@@ -98,7 +98,7 @@ const Internationalsearch = () => {
         <div>
           <button
             onClick={searchbtn}
-            className="btn btn-ghost text-base font-bold border-1 border-black"
+            className="btn btn-ghost text-base font-bold border-1 border-black w-8/12"
           >
             검색
           </button>
@@ -111,26 +111,32 @@ const Internationalsearch = () => {
               <>
                 <div
                   key={index}
-                  className="grid h-full card bg-base-300 rounded-box place-items-center mt-4"
+                  className="grid h-full card bg-base-300 rounded-box place-items-center"
                 >
                   <div className="grid grid-rows-3 font-bold">
                     <div>
+                      <div className="text-2xl">{item.internationalNum}</div>
                       <div className="text-xl">{item.airlineEnglish}</div>
                       <div className="text-lg">{item.airlineKorean}</div>
                     </div>
-                    <div className="grid grid-cols-3 mt-4 text-2xl font-bold">
+                    <div className="grid grid-cols-3 mt-10 text-2xl font-bold">
                       <div>{item.airport}</div>
                       <div>=====✈️=====</div>
                       <div>{item.city}</div>
                     </div>
                     <div className="grid grid-cols-3">
-                      <div>{item.airportCode}</div>
+                      <div className="text-lg">{item.airportCode}</div>
                       <div className="text-xl mt-5">
-                        출발시간 :{" "}
-                        {item.internationalTime.toString().substring(0, 2)} :{" "}
-                        {item.internationalTime.toString().substring(2, 4)}
+                        <div>
+                          출발시간 :{" "}
+                          {item.internationalTime.toString().substring(0, 2)} :{" "}
+                          {item.internationalTime.toString().substring(2, 4)}
+                        </div>
+                        <div className="mt-2">
+                          {item.internationalIoType === "IN" ? "입국" : "출국"}
+                        </div>
                       </div>
-                      <div>{item.cityCode}</div>
+                      <div className="text-lg">{item.cityCode}</div>
                     </div>
                   </div>
                 </div>
