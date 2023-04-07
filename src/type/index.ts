@@ -81,10 +81,10 @@ type internationalScheduleType = {
   airlineEnglish: string; // 항공사영어
   airlineKorean: string; // 항공사한글
   airport: string; // 출발지
-  airportcode: string; // 출발지코드
+  airportCode: string; // 출발지코드
   city: string; // 도착지
-  citycode: string; // 도착지코드
-  internationalloType: string; // 출입국코드 IN: 입국, OUT: 출국
+  cityCode: string; // 도착지코드
+  internationalIoType: string; // 출입국코드 IN: 입국, OUT: 출국
   internationalNum: string; // 항공편명
   internationalTime: number; // 출발시간
 }[];
@@ -92,10 +92,10 @@ type oneinternationalScheduleType = {
   airlineEnglish: string; // 항공사영어
   airlineKorean: string; // 항공사한글
   airport: string; // 출발지
-  airportcode: string; // 출발지코드
+  airportCode: string; // 출발지코드
   city: string; // 도착지
-  citycode: string; // 도착지코드
-  internationalloType: string; // 출입국코드 IN: 입국, OUT: 출국
+  cityCode: string; // 도착지코드
+  internationalIoType: string; // 출입국코드 IN: 입국, OUT: 출국
   internationalNum: string; // 항공편명
   internationalTime: number; // 출발시간
 };

@@ -13,6 +13,7 @@ import {
 } from "../states/atom";
 import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
+import International from "../components/Internationalsearch";
 
 const Search = () => {
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ const Search = () => {
   let month = String(Number(value?.month()) + 1);
   let day = String(Number(value?.date()));
   const [loading, setLoading] = useState(true);
+  const [line, setLine] = useState("D");
 
   if (month !== "10" && month !== "11" && month !== "12") {
     month = "0" + month;
@@ -84,7 +86,6 @@ const Search = () => {
       setOnedomestic,
       setLoading
     );
-    console.log(loading);
   }, [pagenumber]);
 
   return (
@@ -105,56 +106,70 @@ const Search = () => {
         </div>
       </div>
       <h1>Search</h1>
-
-      <div className="grid grid-cols-4 gap-3">
-        <div>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DesktopDatePicker
-              value={value}
-              onChange={(value) => setValue(value)}
-            />
-          </LocalizationProvider>
-        </div>
-        <div>
-          <select
-            className="select w-full max-w-xs select-bordered"
-            onChange={(e) => setDepart(e.target.value)}
-          >
-            <option disabled selected>
-              출발 공항(Depart Airport)
-            </option>
-            {startcity.map((item, index) => (
-              <option key={index} value={item.eng}>
-                {item.kor}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <select
-            className="select w-full max-w-xs select-bordered"
-            onChange={(e) => setArrive(e.target.value)}
-          >
-            <option disabled selected>
-              도착 공항(Arrive Airport)
-            </option>
-            {endcity.map((item, index) => (
-              <option key={index} value={item.eng}>
-                {item.kor}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <button
-            onClick={searchbtn}
-            className="btn btn-ghost text-base font-bold border-1 border-black"
-          >
-            검색
-          </button>
-        </div>
+      <div>
+        <ul className="menu menu-vertical lg:menu-horizontal bg-base-100 rounded-box p-0 font-bold">
+          <li onClick={() => setLine("D")}>
+            <a>국내선</a>
+          </li>
+          <li onClick={() => setLine("I")}>
+            <a>국제선</a>
+          </li>
+        </ul>
       </div>
-      {check && (
+      {line === "D" ? (
+        <div className="grid grid-cols-4 gap-3">
+          <div>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DesktopDatePicker
+                value={value}
+                onChange={(value) => setValue(value)}
+              />
+            </LocalizationProvider>
+          </div>
+          <div>
+            <select
+              className="select w-full max-w-xs select-bordered"
+              onChange={(e) => setDepart(e.target.value)}
+            >
+              <option disabled selected>
+                출발 공항(Depart Airport)
+              </option>
+              {startcity.map((item, index) => (
+                <option key={index} value={item.eng}>
+                  {item.kor}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <select
+              className="select w-full max-w-xs select-bordered"
+              onChange={(e) => setArrive(e.target.value)}
+            >
+              <option disabled selected>
+                도착 공항(Arrive Airport)
+              </option>
+              {endcity.map((item, index) => (
+                <option key={index} value={item.eng}>
+                  {item.kor}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <button
+              onClick={searchbtn}
+              className="btn btn-ghost text-base font-bold border-1 border-black"
+            >
+              검색
+            </button>
+          </div>
+        </div>
+      ) : (
+        <International />
+      )}
+      {check && line == "D" ? (
         <Pagination
           count={page}
           defaultPage={1}
@@ -162,8 +177,8 @@ const Search = () => {
           onChange={pagehandle}
           className="mt-4"
         />
-      )}
-      {check && (
+      ) : null}
+      {check && line == "D" ? (
         <div className="mt-4">
           {Number(totalcount) == 1 && !loading ? ( // 데이터가 한개일때
             <div className="grid h-full card bg-base-300 rounded-box place-items-center">
@@ -368,7 +383,7 @@ const Search = () => {
             </div>
           )}
         </div>
-      )}
+      ) : null}
     </div>
   );
 };

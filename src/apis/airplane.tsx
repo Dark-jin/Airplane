@@ -91,7 +91,6 @@ const liveparkingcongestion = (
       headers: headerConfig,
     })
     .then((response) => {
-      //console.log(response.data.response.body.items.item);
       setParkingcongestion(response.data.response.body.items.item);
     })
     .catch((error) => {
@@ -123,7 +122,6 @@ const domesticsearch = (
     .then((response) => {
       setDomestic(response.data.response.body.items.item);
       totalCount(response.data.response.body.totalCount);
-      console.log(response.data.response.body.totalCount);
       if (response.data.response.body.totalCount == 1) {
         setOnedomestic(response.data.response.body.items.item);
       }
@@ -210,6 +208,7 @@ const internationalsearch = (
       headers: headerConfig,
     })
     .then((response) => {
+      console.log(response.data.response.body.items.item);
       setInternational(response.data.response.body.items.item);
       totalCount(response.data.response.body.totalCount);
       if (response.data.response.body.totalCount == 1) {
