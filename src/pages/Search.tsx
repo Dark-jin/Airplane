@@ -100,7 +100,7 @@ const Search = () => {
             className="btn btn-ghost text-lg font-bold"
             onClick={internationalbtn}
           >
-            해외 항공정보
+            항공정보
           </button>
         </div>
       </div>

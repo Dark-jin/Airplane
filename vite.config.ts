@@ -30,12 +30,18 @@ export default defineConfig({
         secure: true,
         ws: true,
       },
-      "/AirportCodeList/getAirportCodeList":{
+      "/AirportCodeList": {
         target: "http://openapi.airport.co.kr/service/rest",
         changeOrigin: true,
         secure: true,
         ws: true,
-      }
+      },
+      "/IflightScheduleList": {
+        target: "http://openapi.airport.co.kr/service/rest",
+        changeOrigin: true,
+        secure: true,
+        ws: true,
+      },
     },
   },
 });

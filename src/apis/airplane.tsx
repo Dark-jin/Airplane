@@ -3,7 +3,7 @@ import React from "react";
 import { SetterOrUpdater } from "recoil";
 import {
   domesticScheduleType,
-  internationalType,
+  airportinfoType,
   liveListTpye,
   onedomesticScheduleType,
   parkingType,
@@ -165,7 +165,7 @@ const pagedomesticsearch = (
     });
 };
 const internationalairport = (
-  setIternational: SetterOrUpdater<internationalType>,
+  setAirportinfo: SetterOrUpdater<airportinfoType>,
   pagenumber: number,
   setLoading?: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
@@ -179,7 +179,7 @@ const internationalairport = (
       headers: headerConfig,
     })
     .then((response) => {
-      setIternational(response.data.response.body.items.item);
+      setAirportinfo(response.data.response.body.items.item);
       setLoading && setLoading(false);
     })
     .catch((error) => {

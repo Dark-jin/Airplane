@@ -7,7 +7,7 @@ import {
   domesticScheduleType,
   totalcountType,
   onedomesticScheduleType,
-  internationalType,
+  airportinfoType,
 } from "../type";
 import { atom } from "recoil";
 
@@ -176,8 +176,8 @@ const onedomesticScheduleState = atom<onedomesticScheduleType>({
     startcityCode: "",
   },
 });
-const internationalState = atom<internationalType>({
-  key: "internationalData",
+const airportinfoState = atom<airportinfoType>({
+  key: "airportinfoData",
   default: [
     {
       cityCode: "",
@@ -195,5 +195,5 @@ export {
   domesticState,
   totalCount,
   onedomesticScheduleState,
-  internationalState,
+  airportinfoState,
 };
