@@ -208,12 +208,45 @@ const internationalsearch = (
       headers: headerConfig,
     })
     .then((response) => {
-      console.log(response.data.response.body.items.item);
       setInternational(response.data.response.body.items.item);
       totalCount(response.data.response.body.totalCount);
       if (response.data.response.body.totalCount == 1) {
         setOneinternational(response.data.response.body.items.item);
       }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+const pageinternationalsearch = (
+  date: number,
+  setInternational: SetterOrUpdater<internationalScheduleType>,
+  startcity: string,
+  endcity: string,
+  totalCount: SetterOrUpdater<totalcountType>,
+  pagenumber: number,
+  setOneinternational: SetterOrUpdater<oneinternationalScheduleType>,
+  setLoading?: React.Dispatch<React.SetStateAction<boolean>>
+) => {
+  axios
+    .get("/FlightScheduleList/getIflightScheduleList", {
+      params: {
+        serviceKey: VITE_APP_AIR_KEY + "==",
+        schDate: date,
+        schDeptCityCode: startcity,
+        schArrvCityCode: endcity,
+        numOfRows: 7,
+        pageNo: pagenumber,
+      },
+      headers: headerConfig,
+    })
+    .then((response) => {
+      setInternational(response.data.response.body.items.item);
+      totalCount(response.data.response.body.totalCount);
+      if (response.data.response.body.totalCount == 1) {
+        setOneinternational(response.data.response.body.items.item);
+      }
+      setLoading && setLoading(false);
     })
     .catch((error) => {
       console.log(error);
@@ -229,4 +262,5 @@ export {
   pagedomesticsearch,
   airportinfoAPI,
   internationalsearch,
+  pageinternationalsearch,
 };

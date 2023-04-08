@@ -2,7 +2,7 @@ import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Dayjs } from "dayjs";
 import { useEffect, useState } from "react";
-import { internationalsearch } from "../apis/airplane";
+import { internationalsearch, pageinternationalsearch } from "../apis/airplane";
 import { useRecoilState } from "recoil";
 import {
   internationalScheduleState,
@@ -10,6 +10,7 @@ import {
   totalCount,
 } from "../states/atom";
 import Loading from "./Loading";
+import { Pagination } from "@mui/material";
 
 const Internationalsearch = () => {
   const [value, setValue] = useState<Dayjs | null>(null);
@@ -19,8 +20,6 @@ const Internationalsearch = () => {
   const [oneinternational, setOneInternational] = useRecoilState(
     oneinternationalScheduleState
   );
-  const [startcity, setStartcity] = useState("");
-  const [endcity, setEndcity] = useState("");
   const [depart, setDepart] = useState("");
   const [arrive, setArrive] = useState("");
   const [totalcount, setTotalcount] = useRecoilState(totalCount);
@@ -66,7 +65,17 @@ const Internationalsearch = () => {
     setPagenumber(value);
   };
 
-  useEffect(() => {});
+  useEffect(() => {
+    pageinternationalsearch(
+      date,
+      setInternational,
+      depart,
+      arrive,
+      setTotalcount,
+      pagenumber,
+      setOneInternational
+    );
+  }, [pagenumber]);
 
   return (
     <>
@@ -104,8 +113,17 @@ const Internationalsearch = () => {
           </button>
         </div>
       </div>
+      {check && (
+        <Pagination
+          count={page}
+          defaultPage={1}
+          page={pagenumber}
+          onChange={pagehandle}
+          className="mt-4"
+        />
+      )}
       <div className="mt-6">
-        {check && (
+        {check && Number(totalcount) > 1 ? (
           <div>
             {international.map((item, index) => (
               <>
@@ -148,6 +166,57 @@ const Internationalsearch = () => {
               </>
             ))}
           </div>
+        ) : check && Number(totalcount) === 1 ? (
+          <>
+            <div className="grid h-full card bg-base-300 rounded-box place-items-center">
+              <div className="grid grid-rows-3 font-bold">
+                <div>
+                  <div className="text-2xl">
+                    {oneinternational.internationalNum}
+                  </div>
+                  <div className="text-xl">
+                    {oneinternational.airlineEnglish}
+                  </div>
+                  <div className="text-lg">
+                    {oneinternational.airlineKorean}
+                  </div>
+                </div>
+                <div className="grid grid-cols-3 mt-10 text-2xl font-bold">
+                  <div>{oneinternational.airport}</div>
+                  <div>=====✈️=====</div>
+                  <div>{oneinternational.city}</div>
+                </div>
+                <div className="grid grid-cols-3">
+                  <div className="text-lg">{oneinternational.airportCode}</div>
+                  <div className="text-xl mt-5">
+                    <div>
+                      출발시간 :{" "}
+                      {oneinternational.internationalTime
+                        .toString()
+                        .substring(0, 2)}{" "}
+                      :{" "}
+                      {oneinternational.internationalTime
+                        .toString()
+                        .substring(2, 4)}
+                    </div>
+                    <div className="mt-2">
+                      {oneinternational.internationalIoType === "IN"
+                        ? "입국"
+                        : "출국"}
+                    </div>
+                  </div>
+                  <div className="text-lg">{oneinternational.cityCode}</div>
+                </div>
+              </div>
+            </div>
+          </>
+        ) : (
+          check && (
+            <div className="text-lg">
+              검색결과가 없습니다
+              <Loading />
+            </div>
+          )
         )}
       </div>
     </>

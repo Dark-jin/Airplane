@@ -75,6 +75,7 @@ const Search = () => {
   const pagehandle = (event: React.ChangeEvent<unknown>, value: any) => {
     setPagenumber(value);
   };
+
   useEffect(() => {
     pagedomesticsearch(
       date,
@@ -108,12 +109,15 @@ const Search = () => {
       <h1>Search</h1>
       <div>
         <ul className="menu menu-vertical lg:menu-horizontal bg-base-100 rounded-box p-0 font-bold">
-          <li onClick={() => setLine("D")}>
-            <a>국내선</a>
-          </li>
-          <li onClick={() => setLine("I")}>
-            <a>국제선</a>
-          </li>
+          {line == "I" ? (
+            <li onClick={() => setLine("D")}>
+              <a>국내선 항공 검색</a>
+            </li>
+          ) : (
+            <li onClick={() => setLine("I")}>
+              <a>국제선 항공 검색</a>
+            </li>
+          )}
         </ul>
       </div>
       {line === "D" ? (
