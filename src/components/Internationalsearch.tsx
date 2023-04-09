@@ -127,34 +127,39 @@ const Internationalsearch = () => {
           <div>
             {international.map((item, index) => (
               <>
-                <div
-                  key={index}
-                  className="grid h-full card bg-base-300 rounded-box place-items-center"
-                >
-                  <div className="grid grid-rows-3 font-bold">
-                    <div>
-                      <div className="text-2xl">{item.internationalNum}</div>
-                      <div className="text-xl">{item.airlineEnglish}</div>
-                      <div className="text-lg">{item.airlineKorean}</div>
-                    </div>
-                    <div className="grid grid-cols-3 mt-10 text-2xl font-bold">
-                      <div>{item.airport}</div>
-                      <div>=====✈️=====</div>
-                      <div>{item.city}</div>
-                    </div>
-                    <div className="grid grid-cols-3">
-                      <div className="text-lg">{item.airportCode}</div>
-                      <div className="text-xl mt-5">
-                        <div>
-                          출발시간 :{" "}
-                          {item.internationalTime.toString().substring(0, 2)} :{" "}
-                          {item.internationalTime.toString().substring(2, 4)}
-                        </div>
-                        <div className="mt-2">
-                          {item.internationalIoType === "IN" ? "입국" : "출국"}
-                        </div>
+                <div className="bg-slate-200 rounded-xl" key={index}>
+                  <div
+                    key={index}
+                    className="grid h-full card  bg-sky-400 rounded-box place-items-center ml-12"
+                  >
+                    <div className="grid grid-rows-3 font-bold">
+                      <div>
+                        <div className="text-2xl">{item.internationalNum}</div>
+                        <div className="text-xl">{item.airlineEnglish}</div>
+                        <div className="text-lg">{item.airlineKorean}</div>
                       </div>
-                      <div className="text-lg">{item.cityCode}</div>
+                      <div className="grid grid-cols-3 mt-10 text-2xl font-bold">
+                        <div>{item.airport}</div>
+                        <div>=====✈️=====</div>
+                        <div>{item.city}</div>
+                      </div>
+                      <div className="grid grid-cols-3">
+                        <div className="text-lg">{item.airportCode}</div>
+                        <div className="text-xl mt-5">
+                          <div>
+                            출발시간 :{" "}
+                            {item.internationalTime.toString().substring(0, 2)}{" "}
+                            :{" "}
+                            {item.internationalTime.toString().substring(2, 4)}
+                          </div>
+                          <div className="mt-2">
+                            {item.internationalIoType === "IN"
+                              ? "입국"
+                              : "출국"}
+                          </div>
+                        </div>
+                        <div className="text-lg">{item.cityCode}</div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -168,44 +173,48 @@ const Internationalsearch = () => {
           </div>
         ) : check && Number(totalcount) === 1 ? (
           <>
-            <div className="grid h-full card bg-base-300 rounded-box place-items-center">
-              <div className="grid grid-rows-3 font-bold">
-                <div>
-                  <div className="text-2xl">
-                    {oneinternational.internationalNum}
-                  </div>
-                  <div className="text-xl">
-                    {oneinternational.airlineEnglish}
-                  </div>
-                  <div className="text-lg">
-                    {oneinternational.airlineKorean}
-                  </div>
-                </div>
-                <div className="grid grid-cols-3 mt-10 text-2xl font-bold">
-                  <div>{oneinternational.airport}</div>
-                  <div>=====✈️=====</div>
-                  <div>{oneinternational.city}</div>
-                </div>
-                <div className="grid grid-cols-3">
-                  <div className="text-lg">{oneinternational.airportCode}</div>
-                  <div className="text-xl mt-5">
-                    <div>
-                      출발시간 :{" "}
-                      {oneinternational.internationalTime
-                        .toString()
-                        .substring(0, 2)}{" "}
-                      :{" "}
-                      {oneinternational.internationalTime
-                        .toString()
-                        .substring(2, 4)}
+            <div className="bg-slate-200 rounded-xl">
+              <div className="grid h-full card  bg-sky-400 rounded-box place-items-center ml-12">
+                <div className="grid grid-rows-3 font-bold">
+                  <div>
+                    <div className="text-2xl">
+                      {oneinternational.internationalNum}
                     </div>
-                    <div className="mt-2">
-                      {oneinternational.internationalIoType === "IN"
-                        ? "입국"
-                        : "출국"}
+                    <div className="text-xl">
+                      {oneinternational.airlineEnglish}
+                    </div>
+                    <div className="text-lg">
+                      {oneinternational.airlineKorean}
                     </div>
                   </div>
-                  <div className="text-lg">{oneinternational.cityCode}</div>
+                  <div className="grid grid-cols-3 mt-10 text-2xl font-bold">
+                    <div>{oneinternational.airport}</div>
+                    <div>=====✈️=====</div>
+                    <div>{oneinternational.city}</div>
+                  </div>
+                  <div className="grid grid-cols-3">
+                    <div className="text-lg">
+                      {oneinternational.airportCode}
+                    </div>
+                    <div className="text-xl mt-5">
+                      <div>
+                        출발시간 :{" "}
+                        {oneinternational.internationalTime
+                          .toString()
+                          .substring(0, 2)}{" "}
+                        :{" "}
+                        {oneinternational.internationalTime
+                          .toString()
+                          .substring(2, 4)}
+                      </div>
+                      <div className="mt-2">
+                        {oneinternational.internationalIoType === "IN"
+                          ? "입국"
+                          : "출국"}
+                      </div>
+                    </div>
+                    <div className="text-lg">{oneinternational.cityCode}</div>
+                  </div>
                 </div>
               </div>
             </div>

@@ -80,11 +80,14 @@ const Main = () => {
                 <div></div>
                 <div>{item.arrivedKor}</div>
               </div>
-              <div className="text-xl font-bold mt-4">{item.city}</div>
-              <div>
-                {domastic[0].map((value) =>
-                  value.eng === item.city ? value.kor : ""
-                )}
+              <div className="grid grid-cols-3">
+                <div>
+                  <div className="text-base font-bold">{item.airport}</div>
+                </div>
+                <div></div>
+                <div>
+                  <div className="text-base font-bold">{item.city}</div>
+                </div>
               </div>
               <div className="grid grid-cols-3 mt-4">
                 <div className="text-xl font-semibold">
