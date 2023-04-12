@@ -43,7 +43,9 @@ const totallive = (setTotal: SetterOrUpdater<number>) => {
 const liveairplane = (
   setliveState: SetterOrUpdater<liveListTpye>,
   time: string,
-  line: string
+  line: string,
+  totalCount: SetterOrUpdater<totalcountType>,
+  setLoading?: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   axios
     .get("/FlightStatusList/getFlightStatusList", {
@@ -59,6 +61,8 @@ const liveairplane = (
     })
     .then((response) => {
       setliveState(response.data.response.body.items.item);
+      totalCount(response.data.response.body.totalCount);
+      setLoading && setLoading(false);
     })
     .catch((error) => {
       console.log(error);
