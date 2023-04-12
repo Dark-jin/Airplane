@@ -19,26 +19,26 @@ const headerConfig = {
   "Content-Type": "application/json",
   "Access-Control-Allow-Origin": "*",
 };
-const totallive = (setTotal: SetterOrUpdater<number>) => {
-  axios
-    .get("/FlightStatusList/getFlightStatusList", {
-      params: {
-        serviceKey: VITE_APP_AIR_KEY + "==",
-        schStTime: "1400",
-        schEdTime: "1800",
-        schLineType: "D",
-        schIOType: "O",
-        pageNo: 1,
-      },
-      headers: headerConfig,
-    })
-    .then((response) => {
-      setTotal(response.data.response.body.totalCount);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-};
+// const totallive = (setTotal: SetterOrUpdater<number>) => {
+//   axios
+//     .get("/FlightStatusList/getFlightStatusList", {
+//       params: {
+//         serviceKey: VITE_APP_AIR_KEY + "==",
+//         schStTime: "1400",
+//         schEdTime: "1800",
+//         schLineType: "D",
+//         schIOType: "O",
+//         pageNo: 1,
+//       },
+//       headers: headerConfig,
+//     })
+//     .then((response) => {
+//       setTotal(response.data.response.body.totalCount);
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//     });
+// };
 
 const liveairplane = (
   setliveState: SetterOrUpdater<liveListTpye>,
@@ -258,7 +258,6 @@ const pageinternationalsearch = (
 };
 
 export {
-  totallive,
   liveairplane,
   liveparking,
   liveparkingcongestion,

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { liveairplane, totallive } from "../../apis/airplane";
+import { liveairplane } from "../../apis/airplane";
 import { useRecoilState } from "recoil";
 import {
   liveState,
@@ -34,26 +34,29 @@ const Main = () => {
   };
 
   useEffect(() => {
-    totallive(setTotal);
+    //totallive(setTotal);
     liveairplane(setliveState, nowtime, line, setTotalcount, setLoading);
   }, [line]);
-  console.log(livestate);
 
   return !loading ? (
     <>
       <h1 onClick={homebtn}>AIR AIR AIR</h1>
       <h2 onClick={homebtn}>PLANE</h2>
       <div className="grid grid-cols-3">
-        <div>
-          <ul className="menu menu-vertical lg:menu-horizontal bg-base-100 rounded-box p-0 font-bold">
-            <li onClick={() => setLine("D")}>
-              <a>국내선</a>
-            </li>
-            <li onClick={() => setLine("I")}>
-              <a>국제선</a>
-            </li>
-          </ul>
-        </div>
+        {Number(totalcount) == 0 ? (
+          <div></div>
+        ) : (
+          <div>
+            <ul className="menu menu-vertical lg:menu-horizontal bg-base-100 rounded-box p-0 font-bold">
+              <li onClick={() => setLine("D")}>
+                <a>국내선</a>
+              </li>
+              <li onClick={() => setLine("I")}>
+                <a>국제선</a>
+              </li>
+            </ul>
+          </div>
+        )}
         <div className="mt-3">
           <button
             className="btn btn-ghost text-base font-bold"
