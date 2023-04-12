@@ -1,10 +1,9 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
 import "./App.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Main } from "./pages";
 import Airportparking from "./pages/Airportparking";
 import Search from "./pages/Search";
+import AirportInfo from "./pages/AirportInfo";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/search",
     element: <Search />,
+  },
+  {
+    path: "/airportInfo",
+    element: <AirportInfo />,
   },
 ]);
 

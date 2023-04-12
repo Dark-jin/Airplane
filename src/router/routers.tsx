@@ -1,5 +1,6 @@
 import { Main } from "../pages";
 import Airportparking from "../pages/Airportparking";
+import AirportInfo from "../pages/AirportInfo";
 import Search from "../pages/Search";
 const Router = [
   {
@@ -16,6 +17,11 @@ const Router = [
     title: "Search",
     url: "/search",
     component: <Search />,
+  },
+  {
+    title: "AirportInfo",
+    url: "/airportInfo",
+    component: <AirportInfo />,
   },
 ];
 export default Router;

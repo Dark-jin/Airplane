@@ -1,10 +1,15 @@
 import React from "react";
 import {
   liveListTpye,
-  domasticType,
+  domesticType,
   parkingType,
   parkingcongestionType,
-  domesticType,
+  domesticScheduleType,
+  totalcountType,
+  onedomesticScheduleType,
+  airportinfoType,
+  internationalScheduleType,
+  oneinternationalScheduleType,
 } from "../type";
 import { atom } from "recoil";
 
@@ -36,8 +41,8 @@ const totalliveState = atom<number>({
   key: "totalData",
   default: 1,
 });
-const domasticState = atom<domasticType>({
-  key: "domasticData",
+const domesticState = atom<domesticType>({
+  key: "domesticData",
   default: [
     {
       eng: "GMP",
@@ -133,8 +138,8 @@ const parkingcongestionState = atom<parkingcongestionType>({
     },
   ],
 });
-const domesticState = atom<domesticType>({
-  key: "domesticData",
+const domesticScheduleState = atom<domesticScheduleType>({
+  key: "domesticScheduleData",
   default: [
     {
       airlineEnglish: "",
@@ -148,15 +153,81 @@ const domesticState = atom<domesticType>({
       flightPurpose: "",
       startcity: "", // 출발공항
       startcityCode: "",
-      numOfRows: 0,
     },
   ],
+});
+const totalCount = atom<totalcountType>({
+  key: "totalCount",
+  default: {
+    totalCount: 1,
+  },
+});
+const onedomesticScheduleState = atom<onedomesticScheduleType>({
+  key: "onedomesticScheduleData",
+  default: {
+    airlineEnglish: "",
+    airlineKorean: "",
+    arrivalcity: "",
+    arrivalcityCode: "",
+    domesticArrivalTime: "", // 도착시간
+    domesticEddate: "", // 운항 종료일
+    domesticStartTime: "", // 출발시간
+    domesticStdate: "", // 운항 시작일
+    flightPurpose: "",
+    startcity: "", // 출발공항
+    startcityCode: "",
+  },
+});
+const airportinfoState = atom<airportinfoType>({
+  key: "airportinfoData",
+  default: [
+    {
+      cityCode: "",
+      cityEng: "",
+      cityKor: "",
+    },
+  ],
+});
+const internationalScheduleState = atom<internationalScheduleType>({
+  key: "internationalScheduleData",
+  default: [
+    {
+      airlineEnglish: "",
+      airlineKorean: "",
+      airport: "",
+      airportCode: "",
+      city: "",
+      cityCode: "",
+      internationalIoType: "",
+      internationalNum: "",
+      internationalTime: 0,
+    },
+  ],
+});
+const oneinternationalScheduleState = atom<oneinternationalScheduleType>({
+  key: "oneinternationalScheduleData",
+  default: {
+    airlineEnglish: "",
+    airlineKorean: "",
+    airport: "",
+    airportCode: "",
+    city: "",
+    cityCode: "",
+    internationalIoType: "",
+    internationalNum: "",
+    internationalTime: 0,
+  },
 });
 export {
   liveState,
   totalliveState,
-  domasticState,
+  domesticScheduleState,
   parkingState,
   parkingcongestionState,
   domesticState,
+  totalCount,
+  onedomesticScheduleState,
+  airportinfoState,
+  internationalScheduleState,
+  oneinternationalScheduleState,
 };
