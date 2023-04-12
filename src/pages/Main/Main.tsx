@@ -44,7 +44,9 @@ const Main = () => {
       <h2 onClick={homebtn}>PLANE</h2>
       <div className="grid grid-cols-3">
         {Number(totalcount) == 0 ? (
-          <div></div>
+          <div>
+            <h2>고치는 중...🔨</h2>
+          </div>
         ) : (
           <div>
             <ul className="menu menu-vertical lg:menu-horizontal bg-base-100 rounded-box p-0 font-bold">
