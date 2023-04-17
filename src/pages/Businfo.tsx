@@ -47,7 +47,20 @@ const Buisifo = () => {
         <div>
           {bus.map((item, index) => (
             <div key={index} className="card bg-base-100 shadow-xl mt-4">
-              <div className="text-lg font-bold">{item.busCategoryKorName}</div>
+              <div className="grid grid-cols-3">
+                <div></div>
+                <div className="text-lg font-bold">
+                  {item.busCategoryKorName}
+                </div>
+                <div className="text-end">
+                  <label
+                    htmlFor="my-modal"
+                    className="btn w-2 bg-white text-lg hover:bg-white"
+                  >
+                    📍
+                  </label>
+                </div>
+              </div>
               <div className="grid grid-cols-2 mt-2">
                 <div className="font-bold">
                   탑승 장소<div className="mt-2">{item.busDataGetonKor}</div>
@@ -67,7 +80,24 @@ const Buisifo = () => {
                   현금 요금 : {item.busDataMoney}원
                 </div>
               </div>
-              {/* <div>노선 : {item.busDataRouteKor}</div> */}
+              <input type="checkbox" id="my-modal" className="modal-toggle" />
+              <div className="modal">
+                <div className="modal-box relative">
+                  <div className="grid grid-cols-3">
+                    <div></div>
+                    <div className="text-3xl font-bold">노선</div>
+                    <div>
+                      <label
+                        htmlFor="my-modal"
+                        className="btn btn-sm btn-circle absolute right-2 top-2"
+                      >
+                        ✕
+                      </label>
+                    </div>
+                  </div>
+                  <div>{item.busDataRouteKor}</div>
+                </div>
+              </div>
             </div>
           ))}
         </div>
