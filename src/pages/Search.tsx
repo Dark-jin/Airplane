@@ -164,7 +164,7 @@ const Search = () => {
           <div>
             <button
               onClick={searchbtn}
-              className="btn btn-ghost text-base font-bold border-1 border-black"
+              className="btn btn-ghost text-base font-bold border-1 border-black w-8/12"
             >
               검색
             </button>

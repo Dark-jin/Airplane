@@ -10,6 +10,7 @@ import {
   airportinfoType,
   internationalScheduleType,
   oneinternationalScheduleType,
+  airportbusinfoType,
 } from "../type";
 import { atom } from "recoil";
 
@@ -48,10 +49,10 @@ const domesticState = atom<domesticType>({
       eng: "GMP",
       kor: "김포/서울",
     },
-    {
-      eng: "ICN",
-      kor: "인천",
-    },
+    // {
+    //   eng: "ICN",
+    //   kor: "인천",
+    // },
     {
       eng: "PUS",
       kor: "김해/부산",
@@ -218,6 +219,21 @@ const oneinternationalScheduleState = atom<oneinternationalScheduleType>({
     internationalTime: 0,
   },
 });
+const businfoState = atom<airportbusinfoType>({
+  key: "businfoData",
+  default: [
+    {
+      busCategoryKorName: "",
+      busDataBusNum: "",
+      busDataCard: "",
+      busDataEndTime: "",
+      busDataEtcKor: "",
+      busDataMoney: "",
+      busDataGetonKor: "",
+      busDataRouteKor: "",
+    },
+  ],
+});
 export {
   liveState,
   totalliveState,
@@ -230,4 +246,5 @@ export {
   airportinfoState,
   internationalScheduleState,
   oneinternationalScheduleState,
+  businfoState,
 };

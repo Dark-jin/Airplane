@@ -4,7 +4,7 @@ import { Main } from "./pages";
 import Airportparking from "./pages/Airportparking";
 import Search from "./pages/Search";
 import AirportInfo from "./pages/AirportInfo";
-
+import BusInfo from "./pages/Businfo";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/airportInfo",
     element: <AirportInfo />,
+  },
+  {
+    path: "/businfo",
+    element: <BusInfo />,
   },
 ]);
 

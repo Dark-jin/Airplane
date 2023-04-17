@@ -99,6 +99,16 @@ type oneinternationalScheduleType = {
   internationalNum: string; // 항공편명
   internationalTime: number; // 출발시간
 };
+type airportbusinfoType = {
+  busCategoryKorName: string; // 버스종류
+  busDataBusNum: string; // 버스행
+  busDataCard: string; // 버스카드요금
+  busDataEndTime: string; // 버스종료시간
+  busDataEtcKor: string; // 버스 간격
+  busDataMoney: string; // 버스현금요금
+  busDataGetonKor: string; // 탑승장소
+  busDataRouteKor: string; // 버스경로
+}[];
 
 export type {
   liveListTpye,
@@ -111,4 +121,5 @@ export type {
   airportinfoType,
   internationalScheduleType,
   oneinternationalScheduleType,
+  airportbusinfoType,
 };
