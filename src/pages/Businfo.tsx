@@ -95,7 +95,7 @@ const Buisifo = () => {
                       </label>
                     </div>
                   </div>
-                  <div>{item.busDataRouteKor}</div>
+                  <div className="mt-2 font-bold">{item.busDataRouteKor}</div>
                 </div>
               </div>
             </div>
