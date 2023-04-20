@@ -44,12 +44,12 @@ const Buisifo = () => {
         </select>
       </div>
       {!loading ? (
-        <div>
+        <>
           {bus.map((item, index) => (
-            <div key={index} className="card bg-base-100 shadow-xl mt-4">
+            <div key={index} className="card mt-4 outline">
               <div className="grid grid-cols-3">
-                <div></div>
-                <div className="text-lg font-bold">
+                <div className="aspect-square rounded-full bg-white w-6 outline"></div>
+                <div className="text-xl font-bold">
                   {item.busCategoryKorName}
                 </div>
                 <div className="text-end">
@@ -61,7 +61,7 @@ const Buisifo = () => {
                   </label>
                 </div>
               </div>
-              <div className="grid grid-cols-2 mt-2">
+              <div className="grid grid-cols-2 mt-2 text-lg">
                 <div className="font-bold">
                   탑승 장소<div className="mt-2">{item.busDataGetonKor}</div>
                 </div>
@@ -70,7 +70,7 @@ const Buisifo = () => {
                 </div>
               </div>
               {/* <div className="font-bold">버스간격 : {item.busDataEtcKor}</div> */}
-              <div className="grid grid-cols-2 mt-2">
+              <div className="grid grid-cols-2 mt-2 text-lg">
                 {item.busDataCard == null ? null : (
                   <div className="font-bold">
                     카드 요금 : {item.busDataCard}원
@@ -100,7 +100,7 @@ const Buisifo = () => {
               </div>
             </div>
           ))}
-        </div>
+        </>
       ) : (
         <Loading />
       )}
