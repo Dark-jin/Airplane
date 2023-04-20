@@ -37,9 +37,13 @@ const Buisifo = () => {
             버스 출발지 선택
           </option>
           {domestic.map((item, index) => (
-            <option key={index} value={item.eng}>
-              {item.kor}
-            </option>
+            <>
+              {item.eng !== "USN" ? (
+                <option key={index} value={item.eng}>
+                  {item.kor}
+                </option>
+              ) : null}
+            </>
           ))}
         </select>
       </div>
