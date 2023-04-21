@@ -82,7 +82,7 @@ const Main = () => {
           <h1>🧨 데이터 오류 🧨</h1>
           <Loading />
         </>
-      ) : (
+      ) : livestate.length > 1 ? (
         <>
           {livestate.map((item, index) => (
             <>
@@ -131,7 +131,7 @@ const Main = () => {
                             ? "International Flight"
                             : "No Data"}
                         </div>
-                        {item.gate !== null ? (
+                        {item.gate !== null || "" ? (
                           <div className="text-xl font-semibold">
                             GATE : {item.gate}
                           </div>
@@ -149,10 +149,12 @@ const Main = () => {
             </>
           ))}
         </>
+      ) : (
+        <Loading />
       )}
     </>
   ) : (
-    <Loading />
+    <h1>데이터한개</h1>
   );
 };
 export default Main;

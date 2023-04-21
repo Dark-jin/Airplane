@@ -253,6 +253,7 @@ const BusinfoAPI = (
       headers: headerConfig,
     })
     .then((response) => {
+      console.log(response.data);
       setLoading && setLoading(false);
       setBus(response.data.response.body.items.item);
     })

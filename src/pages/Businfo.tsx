@@ -63,11 +63,22 @@ const Buisifo = () => {
                   >
                     📍
                   </label>
+                  <label
+                    htmlFor="my-modal-2"
+                    className="btn w-2 bg-white text-lg hover:bg-white"
+                  >
+                    🚌
+                  </label>
                 </div>
               </div>
               <div className="grid grid-cols-2 mt-2 text-lg">
                 <div className="font-bold">
-                  탑승 장소<div className="mt-2">{item.busDataGetonKor}</div>
+                  탑승 장소
+                  {item.busDataGetonKor !== null ? (
+                    <div className="mt-2">{item.busDataGetonKor}</div>
+                  ) : (
+                    <div className="mt-2">없음</div>
+                  )}
                 </div>
                 <div className="font-bold">
                   버스번호<div className="mt-2">{item.busDataBusNum}</div>
@@ -100,6 +111,26 @@ const Buisifo = () => {
                     </div>
                   </div>
                   <div className="mt-2 font-bold">{item.busDataRouteKor}</div>
+                </div>
+              </div>
+              <input type="checkbox" id="my-modal-2" className="modal-toggle" />
+              <div className="modal">
+                <div className="modal-box relative">
+                  <div className="grid grid-cols-3">
+                    <div></div>
+                    <div className="text-3xl font-bold">버스 간격</div>
+                    <div>
+                      <label
+                        htmlFor="my-modal-2"
+                        className="btn btn-sm btn-circle absolute right-2 top-2"
+                      >
+                        ✕
+                      </label>
+                    </div>
+                  </div>
+                  <div className="mt-2 font-bold text-2xl">
+                    {item.busDataEtcKor}
+                  </div>
                 </div>
               </div>
             </div>
