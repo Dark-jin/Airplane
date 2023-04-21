@@ -39,9 +39,11 @@ const Buisifo = () => {
           {domestic.map((item, index) => (
             <>
               {item.eng !== "USN" ? (
-                <option key={index} value={item.eng}>
-                  {item.kor}
-                </option>
+                <>
+                  <option key={index} value={item.eng}>
+                    {item.kor}
+                  </option>
+                </>
               ) : null}
             </>
           ))}
@@ -50,7 +52,7 @@ const Buisifo = () => {
       {!loading ? (
         <>
           {bus.map((item, index) => (
-            <div key={index} className="card mt-4 outline">
+            <div key={index} className="card mt-4 outline bg-white">
               <div className="grid grid-cols-3">
                 <div className="aspect-square rounded-full bg-white w-6 outline"></div>
                 <div className="text-xl font-bold">

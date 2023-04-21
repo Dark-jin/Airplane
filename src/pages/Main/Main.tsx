@@ -89,7 +89,7 @@ const Main = () => {
               {!loading ? (
                 <div className="bg-slate-200 rounded-xl" key={index}>
                   <div
-                    className="card card-side shadow-xl mt-4 rounded-xl bg-sky-400 ml-12"
+                    className="card card-side shadow-xl mt-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 ml-12"
                     key={index}
                   >
                     <div className="card-body">

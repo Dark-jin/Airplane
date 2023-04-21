@@ -186,7 +186,7 @@ const Search = () => {
         <div className="mt-4">
           {Number(totalcount) == 1 && !loading ? ( // 데이터가 한개일때
             <div className="bg-slate-200 rounded-xl">
-              <div className="grid h-full card  bg-sky-400 rounded-box place-items-center ml-12">
+              <div className="grid h-full card  bg-gradient-to-r from-sky-500 to-indigo-500 rounded-box place-items-center ml-12">
                 <div className="text-lg font-bold">
                   {onedomestic.airlineEnglish}
                 </div>
@@ -299,7 +299,7 @@ const Search = () => {
                   className="flex flex-col w-full border-opacity-50"
                 >
                   <div className="bg-slate-200 rounded-xl" key={index}>
-                    <div className="grid h-full card  bg-sky-400 rounded-box place-items-center ml-12">
+                    <div className="grid h-full card  bg-gradient-to-r from-sky-500 to-indigo-500 rounded-box place-items-center ml-12">
                       <div className="text-lg font-bold">
                         {item.airlineEnglish}
                       </div>
