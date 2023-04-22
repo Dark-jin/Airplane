@@ -1,21 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { liveairplane } from "../../apis/airplane";
 import { useRecoilState } from "recoil";
-import {
-  liveState,
-  totalliveState,
-  domesticState,
-  totalCount,
-} from "../../states/atom";
+import { liveState, totalCount } from "../../states/atom";
 import { useNavigate } from "react-router-dom";
 import Loading from "../../components/Loading";
 
 const Main = () => {
   const navigate = useNavigate();
   const [livestate, setliveState] = useRecoilState(liveState);
-  const [total, setTotal] = useRecoilState(totalliveState);
   const [line, setLine] = useState("D");
-  const domastic = useRecoilState(domesticState);
   const today = new Date();
   const hours = ("0" + today.getHours()).slice(-2);
   const minutes = ("0" + today.getMinutes()).slice(-2);
@@ -32,9 +25,11 @@ const Main = () => {
   const homebtn = () => {
     navigate("/");
   };
+  const busbtn = () => {
+    navigate("/businfo");
+  };
 
   useEffect(() => {
-    //totallive(setTotal);
     liveairplane(setliveState, nowtime, line, setTotalcount, setLoading);
   }, [line]);
 
@@ -74,6 +69,12 @@ const Main = () => {
           >
             실시간 주차장
           </button>
+          <button
+            className="btn btn-ghost text-base font-bold ml-2"
+            onClick={busbtn}
+          >
+            버스정보
+          </button>
         </div>
       </div>
       {Number(totalcount) == 0 ? (
@@ -81,14 +82,14 @@ const Main = () => {
           <h1>🧨 데이터 오류 🧨</h1>
           <Loading />
         </>
-      ) : (
+      ) : livestate.length > 0 ? (
         <>
           {livestate.map((item, index) => (
             <>
               {!loading ? (
                 <div className="bg-slate-200 rounded-xl" key={index}>
                   <div
-                    className="card card-side shadow-xl mt-4 rounded-xl bg-sky-400 ml-12"
+                    className="card card-side shadow-xl mt-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-400 ml-12"
                     key={index}
                   >
                     <div className="card-body">
@@ -130,7 +131,7 @@ const Main = () => {
                             ? "International Flight"
                             : "No Data"}
                         </div>
-                        {item.gate !== null ? (
+                        {item.gate !== null || "" ? (
                           <div className="text-xl font-semibold">
                             GATE : {item.gate}
                           </div>
@@ -148,10 +149,10 @@ const Main = () => {
             </>
           ))}
         </>
+      ) : (
+        <Loading />
       )}
     </>
-  ) : (
-    <Loading />
-  );
+  ) : null;
 };
 export default Main;

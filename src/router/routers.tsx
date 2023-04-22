@@ -2,6 +2,7 @@ import { Main } from "../pages";
 import Airportparking from "../pages/Airportparking";
 import AirportInfo from "../pages/AirportInfo";
 import Search from "../pages/Search";
+import BusInfo from "../pages/Businfo";
 const Router = [
   {
     title: "Home",
@@ -22,6 +23,11 @@ const Router = [
     title: "AirportInfo",
     url: "/airportInfo",
     component: <AirportInfo />,
+  },
+  {
+    title: "BusInfo",
+    url: "/businfo",
+    component: <BusInfo />,
   },
 ];
 export default Router;

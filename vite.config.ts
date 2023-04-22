@@ -42,6 +42,12 @@ export default defineConfig({
         secure: true,
         ws: true,
       },
+      "/AirportBusInfo": {
+        target: "http://openapi.airport.co.kr/service/rest",
+        changeOrigin: true,
+        secure: true,
+        ws: true,
+      },
     },
   },
 });
