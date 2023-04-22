@@ -1,23 +1,39 @@
 import { useEffect, useState } from "react";
-import { BusinfoAPI } from "../apis/airplane";
+import { BusinfoAPI, BusinfopageAPI } from "../apis/airplane";
 import { useRecoilState } from "recoil";
-import { businfoState, domesticState } from "../states/atom";
+import { businfoState, domesticState, totalCount } from "../states/atom";
 import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
+import { Pagination } from "@mui/material";
 
 const Buisifo = () => {
   const navigate = useNavigate();
   const [bus, setBus] = useRecoilState(businfoState);
   const [domestic, setDomestic] = useRecoilState(domesticState);
+  const [totalcount, setTotalcount] = useState(0);
   const [startbus, setStartbus] = useState("");
   const [loading, setLoading] = useState(true);
+  const [pagenumber, setPagenumber] = useState(1);
+  const page = Math.ceil(Number(totalcount) / 10);
+  const [check, setCheck] = useState(false);
 
-  useEffect(() => {
-    BusinfoAPI(startbus, setBus, setLoading);
-  }, [startbus]);
   const homeclick = () => {
     navigate("/");
   };
+  const pagehandle = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPagenumber(value);
+  };
+  console.log("page : " + page);
+  console.log("totalcount : " + totalcount);
+
+  useEffect(() => {
+    BusinfoAPI(startbus, setBus, 1, setTotalcount, setLoading);
+    setCheck(true);
+  }, [startbus]);
+
+  useEffect(() => {
+    BusinfopageAPI(startbus, setBus, pagenumber, setLoading);
+  }, [pagenumber]);
 
   return (
     <>
@@ -49,12 +65,23 @@ const Buisifo = () => {
           ))}
         </select>
       </div>
+      <div className="bg-white">
+        {check && (
+          <Pagination
+            count={page}
+            defaultPage={1}
+            page={pagenumber}
+            onChange={pagehandle}
+            className="mt-4"
+          />
+        )}
+      </div>
       {!loading ? (
         <>
           {bus.map((item, index) => (
             <div key={index} className="card mt-4 outline bg-white">
               <div className="grid grid-cols-3">
-                <div className="aspect-square rounded-full bg-white w-6 outline"></div>
+                <div className="aspect-square rounded-full w-6 outline"></div>
                 <div className="text-xl font-bold">
                   {item.busCategoryKorName}
                 </div>
@@ -86,7 +113,6 @@ const Buisifo = () => {
                   버스번호<div className="mt-2">{item.busDataBusNum}</div>
                 </div>
               </div>
-              {/* <div className="font-bold">버스간격 : {item.busDataEtcKor}</div> */}
               <div className="grid grid-cols-2 mt-2 text-lg">
                 {item.busDataCard == null ? null : (
                   <div className="font-bold">

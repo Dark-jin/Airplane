@@ -82,14 +82,14 @@ const Main = () => {
           <h1>🧨 데이터 오류 🧨</h1>
           <Loading />
         </>
-      ) : livestate.length > 1 ? (
+      ) : livestate.length > 0 ? (
         <>
           {livestate.map((item, index) => (
             <>
               {!loading ? (
                 <div className="bg-slate-200 rounded-xl" key={index}>
                   <div
-                    className="card card-side shadow-xl mt-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 ml-12"
+                    className="card card-side shadow-xl mt-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-400 ml-12"
                     key={index}
                   >
                     <div className="card-body">
@@ -153,8 +153,6 @@ const Main = () => {
         <Loading />
       )}
     </>
-  ) : (
-    <h1>데이터한개</h1>
-  );
+  ) : null;
 };
 export default Main;

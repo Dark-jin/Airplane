@@ -41,6 +41,9 @@ const liveairplane = (
       headers: headerConfig,
     })
     .then((response) => {
+      if (response.data.response.body.items.item.length === 1) {
+        setliveState([response.data.response.body.items.item]);
+      }
       setliveState(response.data.response.body.items.item);
       totalCount(response.data.response.body.totalCount);
       setLoading && setLoading(false);
@@ -240,20 +243,46 @@ const pageinternationalsearch = (
 const BusinfoAPI = (
   bus: string,
   setBus: SetterOrUpdater<airportbusinfoType>,
+  pagenumber: number,
+  totalCount: SetterOrUpdater<number>,
   setLoading?: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   axios
     .get("/AirportBusInfo/businfo", {
       params: {
         serviceKey: VITE_APP_AIR_KEY + "==",
-        pageNo: 1,
+        pageNo: pagenumber,
         numOfRows: 10,
         schAirport: bus,
       },
       headers: headerConfig,
     })
     .then((response) => {
-      console.log(response.data);
+      setLoading && setLoading(false);
+      totalCount(response.data.response.body.totalCount);
+      setBus(response.data.response.body.items.item);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+const BusinfopageAPI = (
+  bus: string,
+  setBus: SetterOrUpdater<airportbusinfoType>,
+  pagenumber: number,
+  setLoading?: React.Dispatch<React.SetStateAction<boolean>>
+) => {
+  axios
+    .get("/AirportBusInfo/businfo", {
+      params: {
+        serviceKey: VITE_APP_AIR_KEY + "==",
+        pageNo: pagenumber,
+        numOfRows: 7,
+        schAirport: bus,
+      },
+      headers: headerConfig,
+    })
+    .then((response) => {
       setLoading && setLoading(false);
       setBus(response.data.response.body.items.item);
     })
@@ -272,4 +301,5 @@ export {
   internationalsearch,
   pageinternationalsearch,
   BusinfoAPI,
+  BusinfopageAPI,
 };

@@ -29,7 +29,6 @@ const Internationalsearch = () => {
   let year = Number(value?.year());
   let month = String(Number(value?.month()) + 1);
   let day = String(Number(value?.date()));
-  const [loading, setLoading] = useState(true);
 
   if (month !== "10" && month !== "11" && month !== "12") {
     month = "0" + month;
@@ -130,7 +129,7 @@ const Internationalsearch = () => {
                 <div className="bg-slate-200 rounded-xl" key={index}>
                   <div
                     key={index}
-                    className="grid h-full card  bg-gradient-to-r from-sky-500 to-indigo-500 rounded-box place-items-center ml-12"
+                    className="grid h-full card  bg-gradient-to-r from-cyan-500 to-blue-400 rounded-box place-items-center ml-12"
                   >
                     <div className="grid grid-rows-3 font-bold">
                       <div>
@@ -174,7 +173,7 @@ const Internationalsearch = () => {
         ) : check && Number(totalcount) === 1 ? (
           <>
             <div className="bg-slate-200 rounded-xl">
-              <div className="grid h-full card  from-sky-500 to-indigo-500 rounded-box place-items-center ml-12">
+              <div className="grid h-full card  bg-gradient-to-r from-cyan-500 to-blue-400 rounded-box place-items-center ml-12">
                 <div className="grid grid-rows-3 font-bold">
                   <div>
                     <div className="text-2xl">
