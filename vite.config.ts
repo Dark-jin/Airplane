@@ -49,5 +49,6 @@ export default defineConfig({
         ws: true,
       },
     },
+    port: 3013,
   },
 });
