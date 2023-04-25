@@ -24,6 +24,7 @@ sketch
 !.yarn/versions
 
 .DS_Store
+.env
 
 # if you are NOT using Zero-installs, then:
 # comment the following lines
