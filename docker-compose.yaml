@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   app:
-    image: choijinseo/airplane:1.2
+    image: choijinseo/airplane:1.3
     container_name: airplane
     restart: unless-stopped
     ports:
