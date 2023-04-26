@@ -30,7 +30,9 @@ const Main = () => {
   };
 
   useEffect(() => {
-    liveairplane(setliveState, nowtime, line, setTotalcount, setLoading);
+    try {
+      liveairplane(setliveState, nowtime, line, setTotalcount, setLoading);
+    } catch (e) {}
   }, [line]);
 
   return !loading ? (

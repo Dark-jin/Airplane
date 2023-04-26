@@ -1,5 +1,4 @@
-import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import DatePicker from "react-datepicker";
 import { Dayjs } from "dayjs";
 import { useEffect, useState } from "react";
 import { internationalsearch, pageinternationalsearch } from "../apis/airplane";
@@ -13,7 +12,7 @@ import Loading from "./Loading";
 import { Pagination } from "@mui/material";
 
 const Internationalsearch = () => {
-  const [value, setValue] = useState<Dayjs | null>(null);
+  const [value, setValue] = useState<Date | null>(null);
   const [international, setInternational] = useRecoilState(
     internationalScheduleState
   );
@@ -26,9 +25,9 @@ const Internationalsearch = () => {
   const [check, setCheck] = useState(false);
   const [pagenumber, setPagenumber] = useState(1);
   const page = Math.ceil(Number(totalcount) / 10);
-  let year = Number(value?.year());
-  let month = String(Number(value?.month()) + 1);
-  let day = String(Number(value?.date()));
+  let year = Number(value?.getFullYear());
+  let month = String(Number(value?.getMonth()) + 1);
+  let day = String(Number(value?.getDate()));
 
   if (month !== "10" && month !== "11" && month !== "12") {
     month = "0" + month;
@@ -80,12 +79,7 @@ const Internationalsearch = () => {
     <>
       <div className="grid grid-cols-4">
         <div>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DesktopDatePicker
-              value={value}
-              onChange={(value) => setValue(value)}
-            />
-          </LocalizationProvider>
+          <DatePicker selected={value} onChange={(value) => setValue(value)} />
         </div>
         <div>
           <input

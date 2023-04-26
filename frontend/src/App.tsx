@@ -5,6 +5,7 @@ import Airportparking from "./pages/Airportparking";
 import Search from "./pages/Search";
 import AirportInfo from "./pages/AirportInfo";
 import BusInfo from "./pages/Businfo";
+import "react-datepicker/dist/react-datepicker.css";
 const router = createBrowserRouter([
   {
     path: "/",

@@ -14,12 +14,16 @@ import {
   airportbusinfoType,
 } from "../type";
 
-const { VITE_APP_AIR_KEY } = import.meta.env;
+const { VITE_APP_AIR_KEY, VITE_APP_SERVER_URL } = import.meta.env;
 
 const headerConfig = {
   "Content-Type": "application/json",
   "Access-Control-Allow-Origin": "*",
 };
+
+const jaxios = axios.create({
+  baseURL: VITE_APP_SERVER_URL,
+});
 
 const liveairplane = (
   setliveState: SetterOrUpdater<liveListTpye>,
@@ -28,56 +32,33 @@ const liveairplane = (
   totalCount: SetterOrUpdater<totalcountType>,
   setLoading?: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
-  axios
-    .get("/FlightStatusList/getFlightStatusList", {
-      params: {
-        serviceKey: VITE_APP_AIR_KEY + "==",
-        schStTime: time,
-        schEdTime: "2400",
-        schLineType: line,
-        schIOType: "O",
-        pageNo: 1,
-      },
-      headers: headerConfig,
-    })
+  jaxios
+    .get(`/FlightStatusList/${time}/${line}`, {})
     .then((response) => {
       if (response.data.response.body.items.item.length === 1) {
         setliveState([response.data.response.body.items.item]);
       }
       setliveState(response.data.response.body.items.item);
       totalCount(response.data.response.body.totalCount);
-      setLoading && setLoading(false);
     })
     .catch((error) => {
       console.log(error);
+    })
+    .finally(() => {
+      setLoading && setLoading(false);
     });
 };
 const liveparking = (setParking: SetterOrUpdater<parkingType>) => {
-  axios
-    .get("AirportParking/airportparkingRT", {
-      params: {
-        serviceKey: VITE_APP_AIR_KEY + "==",
-      },
-      headers: headerConfig,
-    })
-    .then((response) => {
-      setParking(response.data.response.body.items.item);
-    });
+  jaxios.get(`/AirportParking/airportparkingRT`, {}).then((response) => {
+    setParking(response.data.response.body.items.item);
+  });
 };
 const liveparkingcongestion = (
   airport: string,
   setParkingcongestion: SetterOrUpdater<parkingcongestionType>
 ) => {
-  axios
-    .get("/AirportParkingCongestion/airportParkingCongestionRT", {
-      params: {
-        schAirportCode: airport,
-        serviceKey: VITE_APP_AIR_KEY + "==",
-        numOfRows: 10,
-        pageNo: 1,
-      },
-      headers: headerConfig,
-    })
+  jaxios
+    .get(`/AirportParkingCongestion/airportParkingCongestionRT/${airport}`, {})
     .then((response) => {
       setParkingcongestion(response.data.response.body.items.item);
     })
@@ -95,17 +76,14 @@ const domesticsearch = (
   pagenumber: number,
   setOnedomestic: SetterOrUpdater<onedomesticScheduleType>
 ) => {
-  axios
+  jaxios
     .get("/FlightScheduleList/getDflightScheduleList", {
       params: {
-        serviceKey: VITE_APP_AIR_KEY + "==",
         schDate: date,
         schDeptCityCode: startcity,
         schArrvCityCode: endcity,
-        numOfRows: 7,
         pageNo: pagenumber,
       },
-      headers: headerConfig,
     })
     .then((response) => {
       setDomestic(response.data.response.body.items.item);
@@ -128,17 +106,14 @@ const pagedomesticsearch = (
   setOnedomestic: SetterOrUpdater<onedomesticScheduleType>,
   setLoading?: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
-  axios
-    .get("/FlightScheduleList/getDflightScheduleList", {
+  jaxios
+    .get("/FlightScheduleList/getDflightScheduleListv1", {
       params: {
-        serviceKey: VITE_APP_AIR_KEY + "==",
         schDate: date,
         schDeptCityCode: startcity,
         schArrvCityCode: endcity,
-        numOfRows: 7,
         pageNo: pagenumber,
       },
-      headers: headerConfig,
     })
     .then((response) => {
       setDomestic(response.data.response.body.items.item);
@@ -157,15 +132,8 @@ const airportinfoAPI = (
   pagenumber: number,
   setLoading?: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
-  axios
-    .get("/AirportCodeList/getAirportCodeList", {
-      params: {
-        serviceKey: VITE_APP_AIR_KEY + "==",
-        pageNo: pagenumber,
-        numOfRows: 30,
-      },
-      headers: headerConfig,
-    })
+  jaxios
+    .get(`/AirportCodeList/getAirportCodeList/${pagenumber}`, {})
     .then((response) => {
       setAirportinfo(response.data.response.body.items.item);
       setLoading && setLoading(false);
@@ -183,17 +151,14 @@ const internationalsearch = (
   pagenumber: number,
   setOneinternational: SetterOrUpdater<oneinternationalScheduleType>
 ) => {
-  axios
+  jaxios
     .get("/FlightScheduleList/getIflightScheduleList", {
       params: {
-        serviceKey: VITE_APP_AIR_KEY + "==",
         schDate: date,
         schDeptCityCode: startcity,
         schArrvCityCode: endcity,
-        numOfRows: 7,
         pageNo: pagenumber,
       },
-      headers: headerConfig,
     })
     .then((response) => {
       setInternational(response.data.response.body.items.item);
@@ -216,14 +181,12 @@ const pageinternationalsearch = (
   setOneinternational: SetterOrUpdater<oneinternationalScheduleType>,
   setLoading?: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
-  axios
+  jaxios
     .get("/FlightScheduleList/getIflightScheduleList", {
       params: {
-        serviceKey: VITE_APP_AIR_KEY + "==",
         schDate: date,
         schDeptCityCode: startcity,
         schArrvCityCode: endcity,
-        numOfRows: 7,
         pageNo: pagenumber,
       },
       headers: headerConfig,
@@ -247,16 +210,11 @@ const BusinfoAPI = (
   totalCount: SetterOrUpdater<number>,
   setLoading?: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
-  axios
-    .get("/AirportBusInfo/businfo", {
-      params: {
-        serviceKey: VITE_APP_AIR_KEY + "==",
-        pageNo: pagenumber,
-        numOfRows: 10,
-        schAirport: bus,
-      },
-      headers: headerConfig,
-    })
+  jaxios
+    .get(
+      `/AirportBusInfo/businfo/${pagenumber}/${bus === "" ? "all" : bus}`,
+      {}
+    )
     .then((response) => {
       setLoading && setLoading(false);
       totalCount(response.data.response.body.totalCount);
@@ -272,16 +230,11 @@ const BusinfopageAPI = (
   pagenumber: number,
   setLoading?: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
-  axios
-    .get("/AirportBusInfo/businfo", {
-      params: {
-        serviceKey: VITE_APP_AIR_KEY + "==",
-        pageNo: pagenumber,
-        numOfRows: 7,
-        schAirport: bus,
-      },
-      headers: headerConfig,
-    })
+  jaxios
+    .get(
+      `/AirportBusInfo/businfo/${pagenumber}/${bus === "" ? "all" : bus}`,
+      {}
+    )
     .then((response) => {
       setLoading && setLoading(false);
       setBus(response.data.response.body.items.item);

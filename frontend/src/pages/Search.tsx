@@ -1,8 +1,7 @@
 import { domesticsearch, pagedomesticsearch } from "../apis/airplane";
 import React, { useEffect, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
-import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import DatePicker from "react-datepicker";
 import { Pagination, TextField } from "@mui/material";
 import { useRecoilState } from "recoil";
 import {
@@ -23,16 +22,16 @@ const Search = () => {
   const [depart, setDepart] = useState("");
   const [arrive, setArrive] = useState("");
   const [totalcount, setTotalcount] = useRecoilState(totalCount);
-  const [value, setValue] = useState<Dayjs | null>(null);
+  const [value, setValue] = useState<Date | null>(null);
   const [check, setCheck] = useState(false);
   const [pagenumber, setPagenumber] = useState(1);
   const [onedomestic, setOnedomestic] = useRecoilState(
     onedomesticScheduleState
   );
   const page = Math.ceil(Number(totalcount) / 10);
-  let year = Number(value?.year());
-  let month = String(Number(value?.month()) + 1);
-  let day = String(Number(value?.date()));
+  let year = Number(value?.getFullYear());
+  let month = String(Number(value?.getMonth()) + 1);
+  let day = String(Number(value?.getDate()));
   const [loading, setLoading] = useState(true);
   const [line, setLine] = useState("D");
 
@@ -123,12 +122,10 @@ const Search = () => {
       {line === "D" ? (
         <div className="grid grid-cols-4 gap-3">
           <div>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DesktopDatePicker
-                value={value}
-                onChange={(value) => setValue(value)}
-              />
-            </LocalizationProvider>
+            <DatePicker
+              selected={value}
+              onChange={(value) => setValue(value)}
+            />
           </div>
           <div>
             <select

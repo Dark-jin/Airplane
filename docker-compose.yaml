@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  app:
+    image: choijinseo/airplane:1.1
+    container_name: airplane
+    restart: unless-stopped
+    ports:
+      - 80:3013
+    environment:
+      VITE_APP_AIR_KEY: ${AIR_KEY} # 사용자 컴퓨터에서 AIR_KEY 라는 환경변수의 값을 불러와서 사용함.
+
