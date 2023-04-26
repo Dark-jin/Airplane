@@ -10,9 +10,9 @@ var app = express();
 app.use(cors());
 app.use(route);
 
-// 3000 포트로 서버 오픈
-app.listen(3000, function () {
-  console.log("start! express server on port 3000");
+// 8000 포트로 서버 오픈
+app.listen(8000, function () {
+  console.log("start! express server on port 8000");
 });
 
 // 이제 터미널에 node app.js 를 입력해보자.
